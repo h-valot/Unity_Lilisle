@@ -4,8 +4,8 @@ using UnityEngine;
 public class Debugger : MonoBehaviour
 {
     [SerializeField] private RSO_Path _rsoPath;
+    [SerializeField] private EnemyGenerator _enemyGenerator;
     [SerializeField] private Path[] _paths;
-    [SerializeField] private Enemy[] _enemies;
 
     private void Start()
     {
@@ -16,9 +16,6 @@ public class Debugger : MonoBehaviour
             _paths[index].Place();
         }
         
-        for (int index = 0; index < _enemies.Length; index++)
-        {
-            _enemies[index].Initialize();
-        }
+        _enemyGenerator.SpawnWave();
     }
 }

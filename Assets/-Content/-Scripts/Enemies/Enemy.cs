@@ -3,19 +3,21 @@
 public class Enemy : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private EnemyConfig _enemyConfig;
     [SerializeField] private RSO_Path _rsoPath;
 
     [Header("Tweak-able values")] 
     [SerializeField] private float _thresholdDistance;
 
-    public int _nextWaypoint;
+    private EnemyConfig _enemyConfig;
     private Vector3 _movementDirection;
     private bool _initialized;
     private bool _completed;
+    
+    public int _nextWaypoint;
 
-    public void Initialize()
+    public void Initialize(EnemyConfig newEnemyConfig)
     {
+        _enemyConfig = newEnemyConfig;
         transform.position = _rsoPath.value[^1];
         _nextWaypoint = _rsoPath.value.Count - 2;
         _initialized = true;
