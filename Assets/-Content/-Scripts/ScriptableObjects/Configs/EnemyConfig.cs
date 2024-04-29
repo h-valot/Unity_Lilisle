@@ -5,4 +5,5 @@ public class EnemyConfig : ScriptableObject
 {
     public int speed;
     public float delay;
+	public int damage;
 }

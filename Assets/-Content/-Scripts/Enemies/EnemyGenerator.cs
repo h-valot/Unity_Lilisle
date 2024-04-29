@@ -4,8 +4,8 @@ using UnityEngine;
 public class EnemyGenerator : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private Enemy _enemyPrefab;
     [SerializeField] private WaveConfig[] _waves;
+	[SerializeField] private EnemyPool _enemyPool;
 
     private int _currentWave;
 
@@ -16,11 +16,11 @@ public class EnemyGenerator : MonoBehaviour
 
     private IEnumerator SpawnWaveWithDelay()
     {
-        for (int index = 0; index < _waves[_currentWave].enemies.Length; index++)
+        for (int i = 0; i < _waves[_currentWave].enemies.Length; i++)
         {
-            Enemy newEnemy = Instantiate(_enemyPrefab);
-            newEnemy.Initialize(_waves[_currentWave].enemies[index]);
-            yield return new WaitForSeconds(_waves[_currentWave].enemies[index].delay);
+            Enemy newEnemy = _enemyPool.Get();
+            newEnemy.Initialize(_waves[_currentWave].enemies[i]);
+            yield return new WaitForSeconds(_waves[_currentWave].enemies[i].delay);
         }
     }
 }

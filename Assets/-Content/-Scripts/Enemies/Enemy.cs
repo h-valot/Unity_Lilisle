@@ -2,17 +2,18 @@
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Tweakable values")] 
+    [SerializeField] private float _thresholdDistance;
+
     [Header("References")]
     [SerializeField] private RSO_Path _rsoPath;
-
-    [Header("Tweak-able values")] 
-    [SerializeField] private float _thresholdDistance;
 
     private EnemyConfig _enemyConfig;
     private Vector3 _movementDirection;
     private bool _initialized;
     private bool _completed;
     
+	[Header("Debugging")]
     public int _nextWaypoint;
 
     public void Initialize(EnemyConfig newEnemyConfig)
@@ -26,7 +27,7 @@ public class Enemy : MonoBehaviour
     private void FixedUpdate()
     {
         if (!_initialized
-            || _completed)
+        || _completed)
         {
             return;
         }
@@ -57,6 +58,15 @@ public class Enemy : MonoBehaviour
         {
             _completed = true;
             print("completed");
+        }
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.TryGetComponent<Hearth>(out var health))
+        {
+            health.UpdateHealth(-_enemyConfig.damage);
+            Destroy(this.gameObject);
         }
     }
 }
