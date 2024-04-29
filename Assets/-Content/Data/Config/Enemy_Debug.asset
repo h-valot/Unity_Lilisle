@@ -10,7 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8cefafdba984c71845ae8b634b8fe67, type: 3}
-  m_Name: EnemyConfig
+  m_Name: Enemy_Debug
   m_EditorClassIdentifier: 
-  speed: 5
+  enemyName: Debug
+  description: Walk on the path towards the hearth
   delay: 1
+  health: 2
+  speed: 5
+  damage: 0

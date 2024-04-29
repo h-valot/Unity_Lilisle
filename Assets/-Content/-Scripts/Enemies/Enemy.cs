@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private RSO_Path _rsoPath;
+	public Health healthComponent;
 
     private EnemyConfig _enemyConfig;
     private Vector3 _movementDirection;
@@ -61,12 +62,38 @@ public class Enemy : MonoBehaviour
         }
     }
 
+	public float GetDistanceFromLastWaypoint()
+	{
+		float totalDistance = 0f;
+		for (int i = 0; i < _rsoPath.value.Count; i++)
+		{
+			if (_nextWaypoint == i)
+			{
+				totalDistance += Vector3.Distance(transform.position, _rsoPath.value[i]);
+				break;
+			}
+
+			if (i + 1 > _rsoPath.value.Count)
+			{
+				break;
+			}
+
+			totalDistance += Vector3.Distance(_rsoPath.value[i + 1], _rsoPath.value[i]);
+		}
+		return totalDistance;
+	}
+
+	public void HandleDeath()
+	{
+        gameObject.SetActive(false);
+	}
+
     public void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.TryGetComponent<Hearth>(out var health))
         {
             health.UpdateHealth(-_enemyConfig.damage);
-            Destroy(this.gameObject);
+            HandleDeath();
         }
     }
 }

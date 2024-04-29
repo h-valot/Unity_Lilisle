@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 209524785906592305}
   - component: {fileID: 3718263340653965282}
+  - component: {fileID: 8610670807461987707}
   - component: {fileID: 7025392906694981991}
+  - component: {fileID: 8416555671386867093}
   - component: {fileID: 1695953613101652269}
   m_Layer: 0
   m_Name: Enemy
@@ -47,10 +49,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6780f9699734d5caa4989c9e60b2121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rsoPath: {fileID: 11400000, guid: 72c367678eb47b84a833043d293d8aa3, type: 2}
   _thresholdDistance: 0.2
-  _damage: 5
+  _rsoPath: {fileID: 11400000, guid: 72c367678eb47b84a833043d293d8aa3, type: 2}
+  healthComponent: {fileID: 8610670807461987707}
   _nextWaypoint: 0
+--- !u!114 &8610670807461987707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769015779859022008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0326d9dd96f08fb43b473593713c1780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &7025392906694981991
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -67,6 +81,27 @@ SphereCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!135 &8416555671386867093
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769015779859022008}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

@@ -41,6 +41,7 @@ public class EnemyPool : MonoBehaviour
 			_pooledObjects.Add(pooledObject);
 		}
 		
+		pooledObject.gameObject.SetActive(true);
 		return pooledObject;
 	}
 }
