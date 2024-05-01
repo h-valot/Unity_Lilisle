@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 985087106105772380}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ShootingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,6 +39,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1090096409663436820, guid: b3f350e580980104583aff0bbd05e2e9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2235084229713984308, guid: b3f350e580980104583aff0bbd05e2e9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -94,6 +99,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseTower
       objectReference: {fileID: 0}
+    - target: {fileID: 3812243936031936220, guid: b3f350e580980104583aff0bbd05e2e9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166183818995739157, guid: b3f350e580980104583aff0bbd05e2e9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -109,7 +124,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3812243936031936220, guid: b3f350e580980104583aff0bbd05e2e9,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8293449986930056745}
+      addedObject: {fileID: 764474760971090417}
   m_SourcePrefab: {fileID: 100100000, guid: b3f350e580980104583aff0bbd05e2e9, type: 3}
 --- !u!1 &4727493283685407536 stripped
 GameObject:
@@ -131,8 +146,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _towerConfig: {fileID: 11400000, guid: 41f3e953068168b479e25542fe67d34b, type: 2}
   _shootingPoint: {fileID: 985087106105772380}
-  _sphereCollider: {fileID: 8293449986930056745}
---- !u!135 &8293449986930056745
+  _sphereCollider: {fileID: 764474760971090417}
+  _enemiesInRange: []
+--- !u!135 &764474760971090417
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

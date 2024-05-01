@@ -58,7 +58,6 @@ public class Enemy : MonoBehaviour
         if (_nextWaypoint < 0)
         {
             _completed = true;
-            print("completed");
         }
     }
 
@@ -73,7 +72,7 @@ public class Enemy : MonoBehaviour
 				break;
 			}
 
-			if (i + 1 > _rsoPath.value.Count)
+			if (i + 1 >= _rsoPath.value.Count)
 			{
 				break;
 			}

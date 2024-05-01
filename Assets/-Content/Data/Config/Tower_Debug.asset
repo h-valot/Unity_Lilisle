@@ -15,5 +15,5 @@ MonoBehaviour:
   towerName: Debug
   description: Fires arrows on nearby enemies
   atkRange: 3
-  fireRate: 0.5
+  fireRate: 2
   damage: 1

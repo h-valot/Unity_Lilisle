@@ -11,7 +11,7 @@ public class EnemyPool : MonoBehaviour
 
 	private List<Enemy> _pooledObjects;
 
-	private void Start()
+	public void Initialize()
 	{
 		_pooledObjects = new List<Enemy>();
 

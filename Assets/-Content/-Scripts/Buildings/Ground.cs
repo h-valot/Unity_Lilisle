@@ -9,25 +9,29 @@ public enum GroundType
 
 public class Ground : MonoBehaviour 
 {
+
+	[Header("References")]
+    [SerializeField] private MeshFilter _meshFilter;
+    [SerializeField] private Mesh _cityMesh, _dirtMesh, _waterMesh;
+
+	[Header("Debugging")]
     public GroundType type;
 
-    private void Start() 
-    {
-        RaycastHit[] hits = Physics.BoxCastAll(
-			gameObject.transform.position, 
-			new Vector3(0.25f, 0.25f, 0.25f), 
-			new Vector3(0, -1, 0)
-		);
+	public void SetMesh(GroundType type)
+	{
+		switch (type)
+		{
+			case GroundType.DIRT:
+				_meshFilter.mesh = _dirtMesh;
+				break;
 
-		for (int i = 0; i < hits.Length; i++)
-        {
-			if (hits[i].collider.TryGetComponent<Ground>(out Ground ground))
-            {
-                if (ground != this)
-                {
-                    Destroy(gameObject);
-                }
-            }
-        }
-    }
+			case GroundType.CITY:
+				_meshFilter.mesh = _cityMesh;
+				break;
+
+			case GroundType.WATER:
+				_meshFilter.mesh = _waterMesh;
+				break;
+		}
+	}
 }

@@ -8,6 +8,5 @@ public class Hearth : MonoBehaviour
     public void UpdateHealth(int amount)
     {
         _rsoHeartHealth.value += amount;
-        print("HEARTH: health value changed");
     }
 }

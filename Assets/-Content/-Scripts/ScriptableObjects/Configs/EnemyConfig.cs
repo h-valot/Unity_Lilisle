@@ -7,6 +7,6 @@ public class EnemyConfig : ScriptableObject
 	public string description;
     public float delay;
 	public int health;
-    public int speed;
+    public float speed;
 	public int damage;
 }

@@ -16,5 +16,5 @@ MonoBehaviour:
   description: Walk on the path towards the hearth
   delay: 1
   health: 2
-  speed: 5
+  speed: 2.5
   damage: 0

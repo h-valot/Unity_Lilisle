@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 209524785906592305}
   - component: {fileID: 3718263340653965282}
   - component: {fileID: 8610670807461987707}
-  - component: {fileID: 7025392906694981991}
+  - component: {fileID: 4476040357042711670}
   - component: {fileID: 8416555671386867093}
   - component: {fileID: 1695953613101652269}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,8 +65,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0326d9dd96f08fb43b473593713c1780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &7025392906694981991
-SphereCollider:
+--- !u!65 &4476040357042711670
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -84,8 +84,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Size: {x: 0.1, y: 0.5, z: 0.1}
+  m_Center: {x: 0, y: 0.25, z: 0}
 --- !u!135 &8416555671386867093
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -105,7 +105,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.25
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!54 &1695953613101652269
 Rigidbody:
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 2975253031304366349}
   - component: {fileID: 8299552156489427308}
   - component: {fileID: 6527256512026871304}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,8 +162,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 209524785906592305}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
