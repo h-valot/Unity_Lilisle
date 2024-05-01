@@ -12,7 +12,7 @@ namespace ScriptableObjects
             set
             {
                 _value = value;
-                OnChanged?.Invoke();
+				OnChanged?.Invoke();
             }
         }
 

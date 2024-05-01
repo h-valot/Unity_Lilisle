@@ -27,7 +27,6 @@ public class Road : Tile3D
 
 			if (tile.transform.position == transform.position)
 			{
-				print("overlapping; should be invalid");
 				overlapping = true;
 			}
         }

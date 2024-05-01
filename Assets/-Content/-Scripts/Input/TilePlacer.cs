@@ -174,4 +174,15 @@ public class TilePlacer : MonoBehaviour
         _cursor.transform.name = newCursor.transform.name;
         _cursor.transform.parent = gameObject.transform;
     }
+
+	public void ResetCursor()
+	{
+        // Destroy former cursor
+        if (_cursor) 
+        {
+            Destroy(_cursor.gameObject);
+        }
+		
+		_cursor = null;
+	}
 }

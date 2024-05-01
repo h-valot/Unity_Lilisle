@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35bf94a04d178fc40ada5920982ff1a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rsoHeartHealth: {fileID: 11400000, guid: 8058baf1fad7b4541bd97120ff0156cb, type: 2}
+  _rsoHeart: {fileID: 11400000, guid: 8058baf1fad7b4541bd97120ff0156cb, type: 2}
 --- !u!65 &1046969450327521520
 BoxCollider:
   m_ObjectHideFlags: 0

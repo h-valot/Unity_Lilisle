@@ -3,10 +3,10 @@ using UnityEngine;
 public class Hearth : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private RSO_HeartHealth _rsoHeartHealth;
+    [SerializeField] private RSO_Heart _rsoHeart;
 
     public void UpdateHealth(int amount)
     {
-        _rsoHeartHealth.value += amount;
+        _rsoHeart.value += amount;
     }
 }

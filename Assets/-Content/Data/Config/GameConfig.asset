@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8cefafdba984c71845ae8b634b8fe67, type: 3}
-  m_Name: Enemy_Debug
+  m_Script: {fileID: 11500000, guid: e4cd5aede75b3204da4360c2156dc6e1, type: 3}
+  m_Name: GameConfig
   m_EditorClassIdentifier: 
-  enemyName: Debug
-  description: Walk on the path towards the hearth
-  delay: 1
-  health: 2
-  speed: 2.5
-  damage: 1
+  baseHeartAmount: 20
