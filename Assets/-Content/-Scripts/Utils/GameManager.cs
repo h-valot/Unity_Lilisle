@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TilePlacer _tilePlacer;
     [SerializeField] private EnemyGenerator _enemyGenerator;
     [SerializeField] private EnemyPool _enemyPool;
-    [SerializeField] private Path[] _paths;
+    [SerializeField] private Road[] _roads;
     [SerializeField] private Tower[] _towers;
 
     private void Start()
@@ -16,9 +16,9 @@ public class GameManager : MonoBehaviour
 		_enemyPool.Initialize();
         _rsoPath.value = new List<Vector3>();
         
-        for (int index = 0; index < _paths.Length; index++)
+        for (int index = 0; index < _roads.Length; index++)
         {
-            _paths[index].Place();
+            _roads[index].PlacePath();
         }
 
 		for (int i = 0; i < _towers.Length; i++)

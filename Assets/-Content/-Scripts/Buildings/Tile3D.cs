@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Tile3D : MonoBehaviour 
 {
+    [Header("TILE 3D")] 
     [Header("Color placement")] 
     [SerializeField] private Renderer _meshRenderer;
     [SerializeField] private Material _greenMaterial, _redMaterial, _voidMaterial;
@@ -26,13 +27,13 @@ public class Tile3D : MonoBehaviour
         SetColor();
     }
 
-    private void SetUpRendered() 
+    protected void SetUpRendered() 
     {
         _meshRenderer.enabled = true;
         _meshRenderer.sharedMaterial = _voidMaterial;
     }
     
-    private void HandleWater() 
+    protected void HandleWater() 
     {
         float rnd = Random.Range(0f, 1f);
 
@@ -42,7 +43,7 @@ public class Tile3D : MonoBehaviour
         }
     }
 
-    private void SetColor() 
+    protected void SetColor() 
     {
         // If the tile is already placed, disable its color
         if (isPlaced) 
@@ -71,7 +72,11 @@ public class Tile3D : MonoBehaviour
 			}
 			
 			surroundTileCount++;
-			overlapping = tile.transform.position == transform.position;
+
+			if (tile.transform.position == transform.position)
+			{
+				overlapping = true;
+			}
         }
         
         // Check if there a ground below the building
@@ -89,7 +94,7 @@ public class Tile3D : MonoBehaviour
         }
     }
 
-    public virtual void DoPlacementAction(Tile3D[] surroundTiles, Ground belowGround, GameObject prefabReplacement) 
+    public virtual void DoPlacementAction(Tile3D[] surroundTiles, Ground belowGround) 
     {
 		// Do nothing for the moment
     }

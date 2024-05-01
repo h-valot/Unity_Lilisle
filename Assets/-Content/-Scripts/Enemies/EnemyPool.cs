@@ -17,7 +17,7 @@ public class EnemyPool : MonoBehaviour
 
 		for (int i = 0; i < _poolCapacity; i++)
 		{
-			Enemy newEnemy = Instantiate(_enemyPrefab).GetComponent<Enemy>();
+			Enemy newEnemy = Instantiate(_enemyPrefab, transform).GetComponent<Enemy>();
 			newEnemy.gameObject.SetActive(false);
 			_pooledObjects.Add(newEnemy);
 		}

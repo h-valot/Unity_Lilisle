@@ -76,13 +76,11 @@ public class TilePlacer : MonoBehaviour
 		}
 
 		// Optimization: avoid doing same calculation endlessly
-		if (_cursor.transform.position == _lastFrameCursorPos)
+		if (_cursor.transform.position != _lastFrameCursorPos)
 		{
-			return;
+			_lastFrameCursorPos = _cursor.transform.position;
+			VerifyPlacement();
 		}
-		_lastFrameCursorPos = _cursor.transform.position;
-
-		VerifyPlacement();
 	}
 		
 	private void VerifyPlacement()
@@ -138,6 +136,7 @@ public class TilePlacer : MonoBehaviour
 		if (Input.GetMouseButtonDown(1))
 		{
 			_cursor.transform.eulerAngles += new Vector3(0f, 90f, 0f);
+			VerifyPlacement();
 		}
 	}
 
@@ -158,7 +157,7 @@ public class TilePlacer : MonoBehaviour
         // Replace dirt mesh by city mesh
 		// belowGround.SetMesh(GroundType.CITY);
 
-        NewTile.DoPlacementAction(surroundTiles, belowGround, _cityGround);
+        NewTile.DoPlacementAction(surroundTiles, belowGround);
 		VerifyPlacement();
     }
     

@@ -8,9 +8,4 @@ public class Path : MonoBehaviour
     {
         _rsoPath.value.Add(transform.position);
     }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(transform.position, 0.25f);
-    }
 }
