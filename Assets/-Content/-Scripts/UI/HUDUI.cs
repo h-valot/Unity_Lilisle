@@ -15,24 +15,6 @@ public class HUDUI : MonoBehaviour
 	[SerializeField] private RSO_CurrentWave _rsoCurrentWave;
 	[SerializeField] private GameConfig _gameConfig;
 
-	private void OnEnable()
-	{
-		_rsoHeart.OnChanged += UpdateHeart;
-		_rsoCurrentWave.OnChanged += UpdateWave;
-	}
-
-	private void OnDisable()
-	{
-		_rsoHeart.OnChanged -= UpdateHeart;
-		_rsoCurrentWave.OnChanged -= UpdateWave;
-	}
-
-	private void UpdateDisplays()
-	{
-		UpdateHeart();
-		UpdateWave();
-	}
-
 	private void UpdateHeart()
 	{
 		_tmpHeartCounter.text = $"{_rsoHeart.value}";
@@ -43,5 +25,17 @@ public class HUDUI : MonoBehaviour
 	{
 		_goWave.SetActive(_rsoCurrentWave.value >= 0);
 		_tmpWaveCounter.text = $"{_rsoCurrentWave.value + 1}";
+	}
+	
+	private void OnEnable()
+	{
+		_rsoHeart.OnChanged += UpdateHeart;
+		_rsoCurrentWave.OnChanged += UpdateWave;
+	}
+
+	private void OnDisable()
+	{
+		_rsoHeart.OnChanged -= UpdateHeart;
+		_rsoCurrentWave.OnChanged -= UpdateWave;
 	}
 }

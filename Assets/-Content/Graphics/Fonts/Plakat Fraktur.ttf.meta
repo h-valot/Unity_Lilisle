@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d37fad0d52620a84ba03db54d93df367
+guid: 2eb8bfc60f89f8644ac7767787cf8461
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - King Arthur Legend
+  - Plakat-Fraktur
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

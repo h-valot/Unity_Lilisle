@@ -23,6 +23,19 @@ public class EnemyPool : MonoBehaviour
 		}
 	}
 
+	public bool IsEnemiesAlived()
+	{
+		int enemyCount = 0;
+		foreach (var enemy in _pooledObjects)
+		{
+			if (enemy.gameObject.activeInHierarchy)
+			{
+				enemyCount++;
+			}
+		}
+		return enemyCount > 0;
+	}
+
 	public Enemy Get()
 	{
 		Enemy pooledObject = null;
