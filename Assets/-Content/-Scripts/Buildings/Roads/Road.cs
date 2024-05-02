@@ -6,7 +6,7 @@ public class Road : Tile3D
 	[Header("References")]
 	[SerializeField] private Pin _pinIn;
 	[SerializeField] private Pin _pinOut;
-    [SerializeField] private Path _path;
+    [SerializeField] private Waypoint _path;
 
     public override void VerifyPlacement(Tile3D[] surroundTiles, Ground belowTile) 
     {

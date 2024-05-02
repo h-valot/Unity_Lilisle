@@ -89,7 +89,7 @@ public class Enemy : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.TryGetComponent<Hearth>(out var health))
+        if (collision.collider.TryGetComponent<Heart>(out var health))
         {
             health.UpdateHealth(-_enemyConfig.damage);
             HandleDeath();

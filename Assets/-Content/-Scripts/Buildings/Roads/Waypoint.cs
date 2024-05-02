@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Path : MonoBehaviour
+public class Waypoint : MonoBehaviour
 {
     [SerializeField] private RSO_Path _rsoPath;
 

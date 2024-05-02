@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ae5db212c2ebc546804ea61f482dee5, type: 3}
-  m_Name: Tower_Debug
+  m_Script: {fileID: 11500000, guid: 49724cf5d3ebee74aa3e3ff5a87b4066, type: 3}
+  m_Name: RewardsConfig
   m_EditorClassIdentifier: 
-  towerName: Debug
-  description: Fires arrows on nearby enemies
-  atkRange: 3
-  fireRate: 2
-  damage: 1
+  tiles:
+  - {fileID: 11400000, guid: 41f3e953068168b479e25542fe67d34b, type: 2}
+  - {fileID: 11400000, guid: c10afe61a618e5242ba33ed2a9fd4c1e, type: 2}

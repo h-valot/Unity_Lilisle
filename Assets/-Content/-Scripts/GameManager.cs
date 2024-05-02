@@ -4,8 +4,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 	[Header("RSO references")]
-    [SerializeField] private RSO_Path _rsoPath;
     [SerializeField] private RSO_Heart _rsoHeart;
+    [SerializeField] private RSO_Path _rsoPath;
+	[SerializeField] private RSO_HandCard _rsoHandCard;
 	[SerializeField] private RSO_GameState _rsoGameState;
 	
 	[Header("Configs references")]
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     {
 		_rsoHeart.value = _gameConfig.baseHeartAmount;
 		_rsoPath.value = new List<Vector3>();
+		_rsoHandCard.value = new List<TileConfig>();
 		_rsoGameState.value = GameState.EDIT;
 
 		_tilePlacer.Initialize();
@@ -40,4 +42,27 @@ public class GameManager : MonoBehaviour
 			_towers[i].Initialize();
 		}
     }
+
+	private void ClampHeart()
+	{
+		if (_rsoHeart.value > _gameConfig.baseHeartAmount)
+		{
+			_rsoHeart.value = _gameConfig.baseHeartAmount;
+		}
+
+		if (_rsoHeart.value < 0)
+		{
+			_rsoHeart.value = 0;
+		}
+	}
+
+	private void OnEnable()
+	{
+		_rsoHeart.OnChanged += ClampHeart;
+	}
+
+	private void OnDisable()
+	{
+		_rsoHeart.OnChanged -= ClampHeart;
+	}
 }
