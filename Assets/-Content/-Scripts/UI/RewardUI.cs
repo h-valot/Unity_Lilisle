@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -64,15 +63,37 @@ public class RewardUI : MonoBehaviour
 		_rsoGameState.value = GameState.EDIT;
 	}
 
+	private void AddReward(TileConfig newTileConfig)
+	{
+		_rsoHandCard.value.Add(newTileConfig);
+	}
+
+	private void RemoveReward(TileConfig newTileConfig)
+	{
+		_rsoHandCard.value.Remove(newTileConfig);
+	}
+
 	private void OnEnable()
 	{
-		_rsoGameState.OnChanged += HandleReward;
 		_lastHeartAmount = _rsoHeart.value;
+		_rsoGameState.OnChanged += HandleReward;
+
+		for (int i = 0; i < _cardsUI.Length; i++)
+		{
+			_cardsUI[i].OnSelect += AddReward;
+			_cardsUI[i].OnUnselect += RemoveReward;
+		}
 	}
 
 	private void OnDisable()
 	{
 		_rsoGameState.OnChanged -= HandleReward;
+
+		for (int i = 0; i < _cardsUI.Length; i++)
+		{
+			_cardsUI[i].OnSelect -= AddReward;
+			_cardsUI[i].OnUnselect -= RemoveReward;
+		}
 	}
 
 	public void Hide()

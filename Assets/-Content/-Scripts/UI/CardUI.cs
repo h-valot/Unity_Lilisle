@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,12 +11,12 @@ public class CardUI : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI _tmpCost;
 	[SerializeField] private Image _imgIcon;
 
-	[Header("External references")]
-	[SerializeField] private RSO_HandCard _rsoHandCard;
-
 	[Header("Debugging")]
 	public bool isSelected;
 	public TileConfig tileConfig;
+
+	public event Action<TileConfig> OnSelect;
+	public event Action<TileConfig> OnUnselect;
 
 	public void Initialize(TileConfig newTileConfig)
 	{
@@ -46,15 +47,13 @@ public class CardUI : MonoBehaviour
 
 	private void Select()
 	{
-		print("card added to hand");
-		_rsoHandCard.value.Add(tileConfig);
+		OnSelect.Invoke(tileConfig);
 		isSelected = true;
 	}
 
 	private void Unselect()
 	{
-		print("card removed from hand");
-		_rsoHandCard.value.Remove(tileConfig);
+		OnUnselect.Invoke(tileConfig);
 		isSelected = false;
 	}
 }
