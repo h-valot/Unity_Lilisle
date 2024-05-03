@@ -4,9 +4,8 @@ public class Road : Tile3D
 {
 	[Header("ROAD")]
 	[Header("References")]
-	[SerializeField] private Pin _pinIn;
-	[SerializeField] private Pin _pinOut;
-    [SerializeField] private Waypoint _path;
+	[SerializeField] private Connector _connector;
+    [SerializeField] private Waypoint _waypoint;
 
     public override void VerifyPlacement(Tile3D[] surroundTiles, Ground belowTile) 
     {
@@ -38,13 +37,10 @@ public class Road : Tile3D
 			grounded = true;
 		}
 
-		// Check pin connection
-		_pinOut.VerifyConnection();
-
         if (surroundTileCount > 0 
         && grounded
 		&& !overlapping
-		&& _pinOut.connected)
+		&& _connector.IsLinked())
         {
             canBePlaced = true;
         }
@@ -57,6 +53,6 @@ public class Road : Tile3D
 
 	public void PlacePath()
 	{
-		_path.Place();
+		_waypoint.Place();
 	}
 }

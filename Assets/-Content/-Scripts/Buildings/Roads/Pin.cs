@@ -1,40 +1,59 @@
 using UnityEngine;
 
-public enum PinSignature
-{
-	IN = 0,
-	OUT
-}
-
 public class Pin : MonoBehaviour
 {
-	[Header("Tweakable value")]
-	public PinSignature signature;
-
 	[Header("References")]
 	[SerializeField] private Transform _raycastPoint;
+	[SerializeField] private BoxCollider _boxCollider;
 
-	[Header("Debugging")]
-	public bool connected;
+	private RaycastHit[] _hits;
+	private Ray _ray;
+	private bool _connectorHits;
 
-	public void VerifyConnection()
+	public bool IsLinked()
 	{
-		connected = false;
+		_ray = new Ray(_raycastPoint.position, (transform.position - _raycastPoint.position).normalized);
+		_hits = new RaycastHit[5];
+		Physics.RaycastNonAlloc(_ray, _hits);
 
-		if (!Physics.Raycast(_raycastPoint.position, (transform.position - _raycastPoint.position).normalized, out var hit))
+		if (_hits.Length <= 0)
 		{
-			return;
+			return false;
+		}
+		
+		_connectorHits = false;
+		for (int i = 0; i < _hits.Length; i++)
+		{
+			if (_hits[i].collider == null)
+			{
+				continue;
+			}
+
+			if (!_hits[i].collider.TryGetComponent<Connector>(out var externalConnector))
+			{
+				continue;
+			}
+
+			if (externalConnector == transform.parent.GetComponent<Connector>())
+			{
+				continue;
+			}
+
+			_connectorHits = true;
 		}
 
-		if (!hit.collider.TryGetComponent<Pin>(out var otherPin))
+		if (!_connectorHits)
 		{
-			return;
+			return false;
 		}
 
-		if (signature == PinSignature.OUT
-		&& otherPin.signature == PinSignature.IN)
-		{
-			connected = true;
-		}
+		return true;
+	}
+
+	private void OnDrawGizmos()
+	{
+		Gizmos.color = Color.blue;
+		Gizmos.DrawCube(transform.position + _boxCollider.center, _boxCollider.size);
+		Gizmos.DrawRay(_ray);
 	}
 }

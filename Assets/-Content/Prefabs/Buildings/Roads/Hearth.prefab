@@ -334,6 +334,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hearth
       objectReference: {fileID: 0}
+    - target: {fileID: 7531175752043766007, guid: c9387f1dbd2641d4b932830996160e9a,
+        type: 3}
+      propertyPath: _internalPins.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531175752043766007, guid: c9387f1dbd2641d4b932830996160e9a,
+        type: 3}
+      propertyPath: _internalPins.Array.data[0]
+      value: 
+      objectReference: {fileID: 1157360884572831144}
     - target: {fileID: 7737803817449946983, guid: c9387f1dbd2641d4b932830996160e9a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -385,7 +395,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6421008327621209255, guid: c9387f1dbd2641d4b932830996160e9a, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7737803817449946983, guid: c9387f1dbd2641d4b932830996160e9a,
         type: 3}
@@ -397,6 +408,18 @@ PrefabInstance:
       addedObject: {fileID: 1770385551617471321}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9387f1dbd2641d4b932830996160e9a, type: 3}
+--- !u!114 &1157360884572831144 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 314032530094249603, guid: c9387f1dbd2641d4b932830996160e9a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1464918355789638443}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf4c503cbf704604caf3aaebcc6f19e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &9166616246904001612 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7737803817449946983, guid: c9387f1dbd2641d4b932830996160e9a,

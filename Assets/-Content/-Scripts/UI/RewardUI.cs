@@ -1,15 +1,10 @@
-using System.Collections;
 using TMPro;
 using UnityEngine;
 
 public class RewardUI : MonoBehaviour
 {
-	[Header("Tweakable values")]
-	[SerializeField] private float _gainHeartDuration;
-
 	[Header("Internal references")]
-	[SerializeField] private GameObject _goGainHeart;
-	[SerializeField] private GameObject _goReward;
+	[SerializeField] private GameObject _goParent;
 	[SerializeField] private TextMeshProUGUI _tmpConfirm;
 	[SerializeField] private CardUI[] _cardsUI;
 
@@ -19,13 +14,11 @@ public class RewardUI : MonoBehaviour
 	[SerializeField] private RSO_HandCard _rsoHandCard;
 	[SerializeField] private RewardsConfig _rewardsConfig;
 
-	private int _lastHeartAmount;
-
 	private void HandleReward()
 	{
 		if (_rsoGameState.value == GameState.REWARD)
 		{
-			StartCoroutine(Show());
+			Initialize();
 		}
 		else 
 		{
@@ -33,18 +26,9 @@ public class RewardUI : MonoBehaviour
 		}
 	}
 
-	private IEnumerator Show()
+	private void Initialize()
 	{
-		if (_lastHeartAmount == _rsoHeart.value)
-		{
-			_rsoHeart.value++;
-			_goGainHeart.SetActive(true);
-			yield return new WaitForSeconds(_gainHeartDuration);
-			_goGainHeart.SetActive(false);
-		}
-		_lastHeartAmount = _rsoHeart.value;
-
-		_goReward.SetActive(true);
+		_goParent.SetActive(true);
 		for (int i = 0; i < _cardsUI.Length; i++)
 		{
 			_cardsUI[i].Initialize(_rewardsConfig.tiles[Random.Range(0, _rewardsConfig.tiles.Length)]);
@@ -75,7 +59,6 @@ public class RewardUI : MonoBehaviour
 
 	private void OnEnable()
 	{
-		_lastHeartAmount = _rsoHeart.value;
 		_rsoGameState.OnChanged += HandleReward;
 
 		for (int i = 0; i < _cardsUI.Length; i++)
@@ -98,7 +81,6 @@ public class RewardUI : MonoBehaviour
 
 	public void Hide()
 	{
-		_goGainHeart.SetActive(false);
-		_goReward.SetActive(false);
+		_goParent.SetActive(false);
 	}
 }
