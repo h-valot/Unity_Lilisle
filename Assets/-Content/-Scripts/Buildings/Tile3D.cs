@@ -6,20 +6,19 @@ public class Tile3D : MonoBehaviour
     [Header("Color placement")] 
     [SerializeField] private Renderer _meshRenderer;
     [SerializeField] private Material _greenMaterial, _redMaterial, _voidMaterial;
-
-    [Header("Water combining")]
-    [SerializeField] private bool _canBeCombineWithWater;
-    [SerializeField] private int _waterPositionAngle;
-    [SerializeField] private float _chanceToSpawnWithWater = .3f;
+    [SerializeField] private Transform _raycastPoint;
 
 	[Header("Debugging")]
     public bool canBePlaced;
     public bool isPlaced;
     
+	private Ray _ray;
+	private RaycastHit[] _hits;
+	private bool _pinHits;
+
     protected void Start() 
     {
         SetUpRendered();
-        HandleWater();
     }
     
     protected void Update() 
@@ -31,16 +30,6 @@ public class Tile3D : MonoBehaviour
     {
         _meshRenderer.enabled = true;
         _meshRenderer.sharedMaterial = _voidMaterial;
-    }
-    
-    protected void HandleWater() 
-    {
-        float rnd = Random.Range(0f, 1f);
-
-        if (rnd <= _chanceToSpawnWithWater)
-        {
-            _canBeCombineWithWater = true;
-        }
     }
 
     protected void SetColor() 
@@ -88,11 +77,42 @@ public class Tile3D : MonoBehaviour
 
         if (surroundTileCount > 0 
         && grounded
-		&& !overlapping)
+		&& !overlapping
+		&& !IsInterruptingRoad())
         {
             canBePlaced = true;
         }
     }
+
+	private bool IsInterruptingRoad()
+	{
+		_ray = new Ray(_raycastPoint.position, (transform.position - _raycastPoint.position).normalized);
+		_hits = new RaycastHit[5];
+		Physics.RaycastNonAlloc(_ray, _hits);
+
+		if (_hits.Length <= 0)
+		{
+			return false;
+		}
+
+		_pinHits = false;
+		for (int i = 0; i < _hits.Length; i++)
+		{
+			if (_hits[i].collider == null)
+			{
+				continue;
+			}
+
+			if (!_hits[i].collider.TryGetComponent<Pin>(out var pin))
+			{
+				continue;
+			}
+
+			_pinHits = true;
+		}
+
+		return _pinHits;
+	}
 
     public virtual void DoPlacementAction(Tile3D[] surroundTiles, Ground belowGround) 
     {
