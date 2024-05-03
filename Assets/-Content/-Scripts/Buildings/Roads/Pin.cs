@@ -4,7 +4,6 @@ public class Pin : MonoBehaviour
 {
 	[Header("References")]
 	[SerializeField] private Transform _raycastPoint;
-	[SerializeField] private BoxCollider _boxCollider;
 
 	private RaycastHit[] _hits;
 	private Ray _ray;
@@ -48,12 +47,5 @@ public class Pin : MonoBehaviour
 		}
 
 		return true;
-	}
-
-	private void OnDrawGizmos()
-	{
-		Gizmos.color = Color.blue;
-		Gizmos.DrawCube(transform.position + _boxCollider.center, _boxCollider.size);
-		Gizmos.DrawRay(_ray);
 	}
 }

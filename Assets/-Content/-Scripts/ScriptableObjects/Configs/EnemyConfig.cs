@@ -5,6 +5,7 @@ public class EnemyConfig : ScriptableObject
 {
 	public string enemyName;
 	public string description;
+	public Enemy enemy;
     public float delay;
 	public int health;
     public float speed;

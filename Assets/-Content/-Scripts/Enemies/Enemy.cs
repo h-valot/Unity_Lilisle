@@ -1,13 +1,25 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using DG.Tweening;
 
 public class Enemy : MonoBehaviour
 {
     [Header("Tweakable values")] 
     [SerializeField] private float _thresholdDistance;
 
-    [Header("References")]
-    [SerializeField] private RSO_Path _rsoPath;
+	[Header("Animations")]
+
+	[Header("Death")]
+	[SerializeField] private float _deathAnimationDuration = 2f;
+	[SerializeField] private float _deathScaleDuration = 0.25f;
+
+    [Header("Intenal references")]
+    [SerializeField] private Animator _animator;
 	public Health healthComponent;
+
+    [Header("External references")]
+    [SerializeField] private RSO_Path _rsoPath;
+    [SerializeField] private RSE_EnemyDies _rseEnemyDies;
 
     private EnemyConfig _enemyConfig;
     private Vector3 _movementDirection;
@@ -22,6 +34,7 @@ public class Enemy : MonoBehaviour
         _enemyConfig = newEnemyConfig;
         transform.position = _rsoPath.value[^1];
         _nextWaypoint = _rsoPath.value.Count - 2;
+		_completed = false;
         _initialized = true;
     }
 
@@ -84,7 +97,20 @@ public class Enemy : MonoBehaviour
 
 	public void HandleDeath()
 	{
-        gameObject.SetActive(false);
+		_rseEnemyDies.Call(this);
+		StartCoroutine(AnimateDeath());
+	}
+
+
+	public IEnumerator AnimateDeath()
+	{
+		transform.DOScale(0, _deathScaleDuration).SetEase(Ease.OutElastic);
+		yield return new WaitForSeconds(_deathScaleDuration);
+
+		transform.localScale = Vector3.one;
+		transform.position = Vector3.zero;
+		transform.rotation = Quaternion.identity;
+		gameObject.SetActive(false);
 	}
 
     public void OnCollisionEnter(Collision collision)
@@ -92,7 +118,7 @@ public class Enemy : MonoBehaviour
         if (collision.collider.TryGetComponent<Heart>(out var health))
         {
             health.UpdateHealth(-_enemyConfig.damage);
-            HandleDeath();
+			HandleDeath();
         }
     }
 }

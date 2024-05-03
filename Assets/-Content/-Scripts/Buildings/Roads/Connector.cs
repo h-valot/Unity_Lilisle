@@ -5,7 +5,6 @@ public class Connector : MonoBehaviour
 	[Header("References")]
 	[SerializeField] private Transform _raycastPoint;
 	[SerializeField] private Pin[] _internalPins;
-	[SerializeField] private BoxCollider _boxCollider;
 
 	private RaycastHit[] _hits;
 	private Ray _ray;
@@ -82,12 +81,5 @@ public class Connector : MonoBehaviour
 		}
 
 		return true;
-	}
-
-	private void OnDrawGizmos()
-	{
-		Gizmos.color = Color.red;
-		Gizmos.DrawCube(transform.position + _boxCollider.center, _boxCollider.size);
-		Gizmos.DrawRay(_ray);
 	}
 }

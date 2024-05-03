@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Debug
   description: Walk on the path towards the hearth
+  enemy: {fileID: 3718263340653965282, guid: 0947858a42caec14ba49d7dc6ab7b689, type: 3}
   delay: 1
   health: 2
-  speed: 2.5
+  speed: 0.5
   damage: 1

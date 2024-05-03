@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
 	
 	[Header("Gameplay blocks references")]
     [SerializeField] private Road[] _roads;
-    [SerializeField] private Tower[] _towers;
 
     private void Start()
     {
@@ -36,11 +35,6 @@ public class GameManager : MonoBehaviour
         {
             _roads[index].PlacePath();
         }
-
-		for (int i = 0; i < _towers.Length; i++)
-		{
-			_towers[i].Initialize();
-		}
     }
 
 	private void ClampHeart()

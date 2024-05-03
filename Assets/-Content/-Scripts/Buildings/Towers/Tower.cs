@@ -7,9 +7,12 @@ public class Tower : MonoBehaviour
 	[Header("Tweakable values")]
 	[SerializeField] private TowerConfig _towerConfig;
 
-	[Header("References")]
+	[Header("Internal references")]
 	[SerializeField] private Transform _shootingPoint; 
 	[SerializeField] private SphereCollider _sphereCollider;
+
+	[Header("External references")]
+	[SerializeField] private RSE_EnemyDies _rseEnemyDies;
 
 	[Header("Debugging")]
 	public List<Enemy> _enemiesInRange = new List<Enemy>();
@@ -17,10 +20,11 @@ public class Tower : MonoBehaviour
 	private Enemy _target;
 	private bool _reloading;
 
-	public void Initialize()
+	private void Start()
 	{
 		_sphereCollider.radius = _towerConfig.atkRange;
-		_sphereCollider.center = _shootingPoint.position;
+		_sphereCollider.center = _shootingPoint.localPosition;
+		_reloading = false;
 	}
 
 	private void Update()
@@ -57,7 +61,7 @@ public class Tower : MonoBehaviour
 			return;
 		}
 
-		_target.healthComponent.UpdateHealth(-_towerConfig.damage, CheckEnemyHealth);
+		_target.healthComponent.UpdateHealth(-_towerConfig.damage);
 		StartCoroutine(Reload());
 	}
 	
@@ -68,21 +72,20 @@ public class Tower : MonoBehaviour
 		_reloading = false;
 	}
 
-	private void CheckEnemyHealth(int health)
+	private void RemoveEnemy(Enemy enemy)
 	{
-		if (health > 0) 
-		{
-			return;
-		}
-		
-		_enemiesInRange.Remove(_target);
-		_target = null;
+		_enemiesInRange.Remove(enemy);
 	}
 
 	private void OnTriggerEnter(Collider collider)
 	{
 		if (collider.TryGetComponent<Enemy>(out var enemy))
 		{
+			if (_enemiesInRange.Contains(enemy))
+			{
+				return;
+			}
+
 			_enemiesInRange.Add(enemy);
 		}
 	}
@@ -91,8 +94,18 @@ public class Tower : MonoBehaviour
 	{
 		if (collider.TryGetComponent<Enemy>(out var enemy))
 		{
-			_enemiesInRange.Remove(enemy);
+			RemoveEnemy(enemy);
 		}
+	}
+
+	private void OnEnable()
+	{
+		_rseEnemyDies.action += RemoveEnemy;
+	}
+
+	private void OnDisable()
+	{
+		_rseEnemyDies.action -= RemoveEnemy;
 	}
 
 	private void OnDrawGizmos()

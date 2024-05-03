@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ae5db212c2ebc546804ea61f482dee5, type: 3}
+  m_Name: Tile_Ranger
+  m_EditorClassIdentifier: 
+  tileName: Ranger
+  description: Fires arrows on further enemies
+  icon: {fileID: 0}
+  cost: 3
+  tile: {fileID: 182543872132654592, guid: e8c8ecc986d56664185572be7e0485dc, type: 3}
+  atkRange: 3
+  fireRate: 2
+  damage: 2

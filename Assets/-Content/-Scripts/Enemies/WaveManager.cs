@@ -39,9 +39,9 @@ public class WaveManager : MonoBehaviour
 		
         for (int i = 0; i < _wavesConfig.waves[_rsoCurrentWave.value].enemies.Length; i++)
         {
+            yield return new WaitForSeconds(_wavesConfig.waves[_rsoCurrentWave.value].enemies[i].delay);
             Enemy newEnemy = _enemyPool.Get();
             newEnemy.Initialize(_wavesConfig.waves[_rsoCurrentWave.value].enemies[i]);
-            yield return new WaitForSeconds(_wavesConfig.waves[_rsoCurrentWave.value].enemies[i].delay);
         }
 
 		while (_enemyPool.IsEnemiesAlived())

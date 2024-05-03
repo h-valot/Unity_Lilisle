@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private Animator _animator;
+    [SerializeField] private Enemy _enemy;
+
 	private int _currentHealth;
 
 	public void Initialize(int baseHealth)
@@ -10,15 +14,16 @@ public class Health : MonoBehaviour
 		_currentHealth = baseHealth;
 	}
 
-    public void UpdateHealth(int amount, Action<int> health)
+    public void UpdateHealth(int amount)
     {
         _currentHealth += amount;
 
 		if (_currentHealth <= 0)
 		{
-        	gameObject.SetActive(false);
+			_enemy.HandleDeath();
 		}
-		 
-		health(_currentHealth);
+		
+		_animator.SetBool("GetHit", true);
+		_animator.SetBool("GetHit", false);
     }
 }
