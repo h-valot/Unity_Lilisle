@@ -7,4 +7,5 @@ public class TileConfig : ScriptableObject
 	public string description;
 	public Sprite icon;
 	public int cost;
+	public Tile3D tile;
 }

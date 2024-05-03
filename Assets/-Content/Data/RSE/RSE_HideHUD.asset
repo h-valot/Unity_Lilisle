@@ -9,13 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ae5db212c2ebc546804ea61f482dee5, type: 3}
-  m_Name: Tower_Debug
+  m_Script: {fileID: 11500000, guid: 946f42dcc6be72f419bb3a85dd45a08f, type: 3}
+  m_Name: RSE_HideHUD
   m_EditorClassIdentifier: 
-  tileName: Debug
-  description: Fires arrows on nearby enemies
-  icon: {fileID: 0}
-  cost: 1
-  atkRange: 3
-  fireRate: 2
-  damage: 1

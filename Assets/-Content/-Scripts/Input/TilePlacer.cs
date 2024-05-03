@@ -6,6 +6,8 @@ public class TilePlacer : MonoBehaviour
     [SerializeField] private SnappingGrid _snappingGrid;
     [SerializeField] private GameObject _cityGround;
     [SerializeField] private Transform _gameObjectsContainer;
+    [SerializeField] private RSE_SetCursor _rseSetCursor;
+    [SerializeField] private RSE_TilePlaced _rseTilePlaced;
 
     [Header("Tweakable values")] 
     [SerializeField] private int _gridSize;
@@ -147,7 +149,7 @@ public class TilePlacer : MonoBehaviour
         NewTile.transform.position = _cursor.transform.position;
         NewTile.transform.name = $"{_cursor.transform.name}_x{_cursor.transform.position.x}_z{_cursor.transform.position.z}";
         NewTile.transform.parent = transform;
-        NewTile.isPlaced = true;     
+        NewTile.isPlaced = true;
 
 		_tileGrid[
 			Mathf.RoundToInt(NewTile.transform.position.x), 
@@ -159,6 +161,7 @@ public class TilePlacer : MonoBehaviour
 
         NewTile.DoPlacementAction(surroundTiles, belowGround);
 		VerifyPlacement();
+		_rseTilePlaced.Call();
     }
     
     public void SetCursor(Tile3D newCursor) 
@@ -169,20 +172,25 @@ public class TilePlacer : MonoBehaviour
             Destroy(_cursor.gameObject);
         }
         
+		if (newCursor == null)
+		{
+			_cursor = null;
+			return;
+		}
+
         // Instantiate the new one
         _cursor = Instantiate(newCursor);
         _cursor.transform.name = newCursor.transform.name;
         _cursor.transform.parent = gameObject.transform;
     }
 
-	public void ResetCursor()
+	private void OnEnable()
 	{
-        // Destroy former cursor
-        if (_cursor) 
-        {
-            Destroy(_cursor.gameObject);
-        }
-		
-		_cursor = null;
+		_rseSetCursor.action += SetCursor;
+	}
+
+	private void OnDisable()
+	{
+		_rseSetCursor.action -= SetCursor;
 	}
 }

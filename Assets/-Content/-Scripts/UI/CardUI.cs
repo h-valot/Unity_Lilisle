@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CardUI : MonoBehaviour
 {
 	[Header("Internal references")]
+	[SerializeField] private GameObject _goParent;
 	[SerializeField] private TextMeshProUGUI _tmpTitle;
 	[SerializeField] private TextMeshProUGUI _tmpFlavor;
 	[SerializeField] private TextMeshProUGUI _tmpCost;
@@ -21,6 +22,7 @@ public class CardUI : MonoBehaviour
 	public void Initialize(TileConfig newTileConfig)
 	{
 		tileConfig = newTileConfig;
+		Show();
 		UpdateDisplays();
 		Unselect();
 	}
@@ -47,13 +49,23 @@ public class CardUI : MonoBehaviour
 
 	private void Select()
 	{
-		OnSelect.Invoke(tileConfig);
+		OnSelect?.Invoke(tileConfig);
 		isSelected = true;
 	}
 
-	private void Unselect()
+	public void Unselect()
 	{
-		OnUnselect.Invoke(tileConfig);
+		OnUnselect?.Invoke(tileConfig);
 		isSelected = false;
+	}
+
+	public void Show()
+	{
+		_goParent.SetActive(true);
+	}
+
+	public void Hide()
+	{
+		_goParent.SetActive(false);
 	}
 }

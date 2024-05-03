@@ -4,10 +4,11 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private WaveConfig[] _waves;
+    [SerializeField] private WavesConfig _wavesConfig;
 	[SerializeField] private EnemyPool _enemyPool;
 	[SerializeField] private RSO_CurrentWave _rsoCurrentWave;
 	[SerializeField] private RSO_GameState _rsoGameState;
+	[SerializeField] private RSE_PlayNextWave _rsePlayNextWave;
 
 	private const float _WAVE_DELAY = 0.2f;
 
@@ -24,7 +25,7 @@ public class WaveManager : MonoBehaviour
 		}
 
 		_rsoCurrentWave.value++;
-		if (_rsoCurrentWave.value > _waves.Length)
+		if (_rsoCurrentWave.value > _wavesConfig.waves.Length)
 		{
 			return;
 		}
@@ -36,11 +37,11 @@ public class WaveManager : MonoBehaviour
     {
 		_rsoGameState.value = GameState.WAVE;
 		
-        for (int i = 0; i < _waves[_rsoCurrentWave.value].enemies.Length; i++)
+        for (int i = 0; i < _wavesConfig.waves[_rsoCurrentWave.value].enemies.Length; i++)
         {
             Enemy newEnemy = _enemyPool.Get();
-            newEnemy.Initialize(_waves[_rsoCurrentWave.value].enemies[i]);
-            yield return new WaitForSeconds(_waves[_rsoCurrentWave.value].enemies[i].delay);
+            newEnemy.Initialize(_wavesConfig.waves[_rsoCurrentWave.value].enemies[i]);
+            yield return new WaitForSeconds(_wavesConfig.waves[_rsoCurrentWave.value].enemies[i].delay);
         }
 
 		while (_enemyPool.IsEnemiesAlived())
@@ -50,4 +51,14 @@ public class WaveManager : MonoBehaviour
 		
 		_rsoGameState.value = GameState.REWARD;
     }
+
+	private void OnEnable()
+	{
+		_rsePlayNextWave.action += PlayNextWave;
+	}
+
+	private void OnDisable()
+	{
+		_rsePlayNextWave.action -= PlayNextWave;
+	}
 }

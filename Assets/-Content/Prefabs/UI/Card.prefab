@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 216035751807137500}
   - component: {fileID: 3036593023880339149}
   m_Layer: 5
-  m_Name: Reward card
+  m_Name: Card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -218,14 +218,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17254b0097cda744aa0531825404670c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _goParent: {fileID: 7709696476136070342}
   _tmpTitle: {fileID: 2421563873333121013}
   _tmpFlavor: {fileID: 2770932704807447950}
   _tmpCost: {fileID: 5692484067718834724}
   _imgIcon: {fileID: 4639778601868363643}
-  _rsoHandCard: {fileID: 11400000, guid: 0cf7cf022d6d11649a3952febcc798c0, type: 2}
   isSelected: 0
-  card:
-    tile: {fileID: 0}
+  tileConfig: {fileID: 0}
 --- !u!1 &4929236048081968688
 GameObject:
   m_ObjectHideFlags: 0
