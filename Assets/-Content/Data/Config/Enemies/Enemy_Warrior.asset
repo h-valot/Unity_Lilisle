@@ -9,9 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2e347f0ae98b314a8358af1e242b3ee, type: 3}
-  m_Name: Wave_Debug
+  m_Script: {fileID: 11500000, guid: c8cefafdba984c71845ae8b634b8fe67, type: 3}
+  m_Name: Enemy_Warrior
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 11400000, guid: 4f1015a7498b8cf4aa7d94121579384a, type: 2}
-  - {fileID: 11400000, guid: 063bf7166ba18c246a7f2270da244f11, type: 2}
+  enemyName: Warrior
+  description: Heavy armored skeleton
+  mesh: {fileID: 3316164736229565373, guid: 2d9790899681db84e93f73204e68ca68, type: 3}
+  delay: 1
+  health: 4
+  speed: 0.5
+  damage: 1

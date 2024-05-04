@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using DG.Tweening;
+using Unity.Mathematics;
 
 public class Enemy : MonoBehaviour
 {
@@ -10,32 +11,40 @@ public class Enemy : MonoBehaviour
 	[Header("Animations")]
 	[SerializeField] private float _deathScaleDuration = 0.25f;
 
-    [Header("Intenal references")]
-    [SerializeField] private Animator _animator;
-	public Health healthComponent;
-
     [Header("External references")]
     [SerializeField] private RSO_Path _rsoPath;
     [SerializeField] private RSE_EnemyDies _rseEnemyDies;
+
+	[Header("Debugging")]
+    public int _nextWaypoint;
 
     private EnemyConfig _enemyConfig;
     private Vector3 _movementDirection;
     private bool _initialized;
     private bool _completed;
-    
-	[Header("Debugging")]
-    public int _nextWaypoint;
+	private int _currentHealth;
+    private Animator _animator;
+	private GameObject _mesh;
 
     public void Initialize(EnemyConfig newEnemyConfig)
     {
         _enemyConfig = newEnemyConfig;
         transform.position = _rsoPath.value[^1];
         _nextWaypoint = _rsoPath.value.Count - 2;
+		_currentHealth = _enemyConfig.health;
 		_completed = false;
+
+		if (_mesh)
+		{
+			Destroy(_mesh);
+		}
+		_mesh = Instantiate(_enemyConfig.mesh, transform);
+		_animator = _mesh.GetComponent<Animator>();
+
         _initialized = true;
     }
-
-    private void FixedUpdate()
+	
+	private void FixedUpdate()
     {
         if (!_initialized
         || _completed)
@@ -95,7 +104,10 @@ public class Enemy : MonoBehaviour
 	public void HandleDeath()
 	{
 		_rseEnemyDies.Call(this);
-		StartCoroutine(AnimateDeath());
+		if (gameObject.activeInHierarchy)
+		{
+			StartCoroutine(AnimateDeath());
+		}
 	}
 
 
@@ -109,6 +121,19 @@ public class Enemy : MonoBehaviour
 		transform.rotation = Quaternion.identity;
 		gameObject.SetActive(false);
 	}
+
+    public void UpdateHealth(int amount)
+    {
+        _currentHealth += amount;
+
+		if (_currentHealth <= 0)
+		{
+			HandleDeath();
+		}
+		
+		_animator.SetBool("GetHit", true);
+		_animator.SetBool("GetHit", false);
+    }
 
     public void OnCollisionEnter(Collision collision)
     {

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8cefafdba984c71845ae8b634b8fe67, type: 3}
-  m_Name: Enemy_Debug
+  m_Name: Enemy_Minion
   m_EditorClassIdentifier: 
-  enemyName: Debug
-  description: Walk on the path towards the hearth
-  enemy: {fileID: 3718263340653965282, guid: 0947858a42caec14ba49d7dc6ab7b689, type: 3}
+  enemyName: Minion
+  description: Light skeleton
+  mesh: {fileID: 7226691383644916826, guid: 6424b4e2d9368cf46aa55c827d514f28, type: 3}
   delay: 1
   health: 2
   speed: 0.5

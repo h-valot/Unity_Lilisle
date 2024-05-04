@@ -61,7 +61,7 @@ public class Tower : MonoBehaviour
 			return;
 		}
 
-		_target.healthComponent.UpdateHealth(-_towerConfig.damage);
+		_target.UpdateHealth(-_towerConfig.damage);
 		StartCoroutine(Reload());
 	}
 	
