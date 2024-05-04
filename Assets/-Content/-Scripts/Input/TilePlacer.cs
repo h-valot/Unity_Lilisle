@@ -2,25 +2,23 @@ using UnityEngine;
 
 public class TilePlacer : MonoBehaviour 
 {
+    [Header("Tweakable values")] 
+    [SerializeField] private int _gridSize;
+
     [Header("References")] 
     [SerializeField] private SnappingGrid _snappingGrid;
     [SerializeField] private GameObject _cityGround;
     [SerializeField] private Transform _gameObjectsContainer;
     [SerializeField] private RSE_SetCursor _rseSetCursor;
     [SerializeField] private RSE_TilePlaced _rseTilePlaced;
+    [SerializeField] private RSO_GroundGrid _rsoGroundGrid;
+    [SerializeField] private RSO_TileGrid _rsoTileGrid;
 
-    [Header("Tweakable values")] 
-    [SerializeField] private int _gridSize;
-
+	private const int _SURROUND_TILES_LENGTH = 9;
     private Camera _camera;
     private Tile3D _cursor = null;
 	private Vector3 _lastFrameCursorPos;
 	private Vector3Int _roundedCursorPos;
-
-	private const int _SURROUND_TILES_LENGTH = 9;
-
-	private Tile3D[,] _tileGrid;
-	private Ground[,] _groundGrid;
 	private Tile3D[] _surroundTiles;
 	private Ground _belowGround;
 
@@ -31,15 +29,15 @@ public class TilePlacer : MonoBehaviour
 
 	public void Initialize()
 	{
-		_tileGrid = new Tile3D[_gridSize, _gridSize];
-		_groundGrid = new Ground[_gridSize, _gridSize];
+		_rsoTileGrid.value = new Tile3D[_gridSize, _gridSize];
+		_rsoGroundGrid.value = new Ground[_gridSize, _gridSize];
 		_gameObjectsContainer.position = new Vector3(_gridSize / 2, 0, _gridSize / 2);
 
 		foreach (Transform child in transform)
 		{
 			if (child.TryGetComponent<Tile3D>(out var tile))
 			{
-				_tileGrid[
+				_rsoTileGrid.value[
 					Mathf.RoundToInt(child.position.x), 
 					Mathf.RoundToInt(child.position.z)
 				] = tile;
@@ -47,7 +45,7 @@ public class TilePlacer : MonoBehaviour
 
 			if (child.TryGetComponent<Ground>(out var ground))
 			{
-				_groundGrid[
+				_rsoGroundGrid.value[
 					Mathf.RoundToInt(child.position.x), 
 					Mathf.RoundToInt(child.position.z)
 				] = ground;
@@ -109,9 +107,9 @@ public class TilePlacer : MonoBehaviour
 					continue;
 				}
 
-				if (_tileGrid[x, z] != null)
+				if (_rsoTileGrid.value[x, z] != null)
 				{
-					_surroundTiles[surroundTileCount] = _tileGrid[x, z];
+					_surroundTiles[surroundTileCount] = _rsoTileGrid.value[x, z];
 				}
 				localZ++;
 			}
@@ -119,7 +117,7 @@ public class TilePlacer : MonoBehaviour
 			localZ = -1;
 		}
 
-		_belowGround = _groundGrid[_roundedCursorPos.x, _roundedCursorPos.z];
+		_belowGround = _rsoGroundGrid.value[_roundedCursorPos.x, _roundedCursorPos.z];
 		
 		// Check out the tile placement verification
 		_cursor.VerifyPlacement(_surroundTiles, _belowGround);
@@ -145,21 +143,21 @@ public class TilePlacer : MonoBehaviour
     private void PlaceTile(Tile3D[] surroundTiles, Ground belowGround) 
     {        
         // Instantiate the cursor as a tile
-        Tile3D NewTile = Instantiate(_cursor);
-        NewTile.transform.position = _cursor.transform.position;
-        NewTile.transform.name = $"{_cursor.transform.name}_x{_cursor.transform.position.x}_z{_cursor.transform.position.z}";
-        NewTile.transform.parent = transform;
-        NewTile.isPlaced = true;
+        Tile3D newTile = Instantiate(_cursor);
+        newTile.transform.position = _cursor.transform.position;
+        newTile.transform.name = $"{_cursor.transform.name}_x{_cursor.transform.position.x}_z{_cursor.transform.position.z}";
+        newTile.transform.parent = transform;
+        newTile.isPlaced = true;
 
-		_tileGrid[
-			Mathf.RoundToInt(NewTile.transform.position.x), 
-			Mathf.RoundToInt(NewTile.transform.position.z)
-		] = NewTile;   
+		_rsoTileGrid.value[
+			Mathf.RoundToInt(newTile.transform.position.x), 
+			Mathf.RoundToInt(newTile.transform.position.z)
+		] = newTile;   
 
         // Replace dirt mesh by city mesh
 		// belowGround.SetMesh(GroundType.CITY);
 
-        NewTile.DoPlacementAction(surroundTiles, belowGround);
+        newTile.DoPlacementAction(surroundTiles, belowGround);
 		VerifyPlacement();
 		_rseTilePlaced.Call();
     }

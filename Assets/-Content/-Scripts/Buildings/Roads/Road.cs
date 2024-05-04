@@ -31,8 +31,7 @@ public class Road : Tile3D
         }
         
         // Check if there a ground below the building
-		if (belowTile != null
-		&& belowTile.type != GroundType.WATER)
+		if (belowTile != null)
 		{
 			grounded = true;
 		}

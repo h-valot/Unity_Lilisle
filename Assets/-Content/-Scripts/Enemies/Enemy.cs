@@ -8,9 +8,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _thresholdDistance;
 
 	[Header("Animations")]
-
-	[Header("Death")]
-	[SerializeField] private float _deathAnimationDuration = 2f;
 	[SerializeField] private float _deathScaleDuration = 0.25f;
 
     [Header("Intenal references")]

@@ -69,8 +69,7 @@ public class Tile3D : MonoBehaviour
         }
         
         // Check if there a ground below the building
-		if (belowTile != null
-		&& belowTile.type != GroundType.WATER)
+		if (belowTile != null)
 		{
 			grounded = true;
 		}
