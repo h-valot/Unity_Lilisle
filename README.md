@@ -14,7 +14,8 @@ In the current version of the game, these modifiers apply as follows:
 
 # Game manual
 
-The player must defend the heart against never-ending waves of enemies. At start, the heart has 20 health points.
+The player must defend the heart against never-ending waves of enemies. 
+At start, the heart has 20 health points.
 
 ## Tiles
 
@@ -35,9 +36,6 @@ The flag creates new grounds around itself.
 ## Enemies
 
 Enemies spawns in waves going up the whole road to reach the heart. They all deal one damage to the heart. There are three types of enemies:
-- Minion
-- Mage
-- Warrior
 
 ### Minion
 

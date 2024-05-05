@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEditor;
 using DG.Tweening;
 using UnityEngine.UI;
 
@@ -137,16 +138,15 @@ public class Enemy : MonoBehaviour
 			HandleDeath();
 		}
 
-		#if !UNITY_EDITOR
-		
+		if (EditorApplication.isPlaying) 
+		{
 			_healthBar.fillAmount = (float) _currentHealth / (float) _enemyConfig.health;
 			_healthBarLerp.DOFillAmount(_healthBar.fillAmount, _backProgressBarDuration).SetEase(Ease.InOutSine);
 
 			_rsePlaySound.Call(TypeSound.SFX, _onHitClip, false);
 
 			_animator.SetTrigger("GetHit");
-		
-		#endif
+		}
     }
 
     public void OnCollisionEnter(Collision collision)

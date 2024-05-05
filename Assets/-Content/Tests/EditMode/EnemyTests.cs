@@ -8,7 +8,7 @@ namespace Tests
 	public class EnemyTests
 	{
 		[Test]
-		public void Should_remove_life_when_taking_damage()
+		public void should_remove_life_when_taking_damage()
 		{
 			// Arrange
 			GameObject gameObject = new GameObject();
