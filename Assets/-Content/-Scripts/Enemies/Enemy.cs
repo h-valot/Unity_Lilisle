@@ -132,17 +132,21 @@ public class Enemy : MonoBehaviour
     {
         _currentHealth += amount;
 
-		_healthBar.fillAmount = (float) _currentHealth / (float) _enemyConfig.health;
-		_healthBarLerp.DOFillAmount(_healthBar.fillAmount, _backProgressBarDuration).SetEase(Ease.InOutSine);
-
 		if (_currentHealth <= 0)
 		{
 			HandleDeath();
 		}
+
+		#if !UNITY_EDITOR
 		
-		_rsePlaySound.Call(TypeSound.SFX, _onHitClip, false);
-		_animator.SetBool("GetHit", true);
-		_animator.SetBool("GetHit", false);
+			_healthBar.fillAmount = (float) _currentHealth / (float) _enemyConfig.health;
+			_healthBarLerp.DOFillAmount(_healthBar.fillAmount, _backProgressBarDuration).SetEase(Ease.InOutSine);
+
+			_rsePlaySound.Call(TypeSound.SFX, _onHitClip, false);
+
+			_animator.SetTrigger("GetHit");
+		
+		#endif
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -153,4 +157,11 @@ public class Enemy : MonoBehaviour
 			HandleDeath();
         }
     }
+
+	#if UNITY_EDITOR
+
+		public int test_getCurrentHealth() => _currentHealth;
+		public int test_setCurrentHealth(int value) => _currentHealth = value;
+
+	#endif
 }
