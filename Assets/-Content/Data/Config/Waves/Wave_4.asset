@@ -9,6 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ca806352083fa64b91e8c6350b9ca13, type: 3}
-  m_Name: RSO_HandCard
+  m_Script: {fileID: 11500000, guid: c2e347f0ae98b314a8358af1e242b3ee, type: 3}
+  m_Name: Wave_4
   m_EditorClassIdentifier: 
+  enemies:
+  - {fileID: 11400000, guid: 4f1015a7498b8cf4aa7d94121579384a, type: 2}
+  - {fileID: 11400000, guid: 063bf7166ba18c246a7f2270da244f11, type: 2}

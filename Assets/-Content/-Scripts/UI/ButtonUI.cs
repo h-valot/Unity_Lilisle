@@ -27,14 +27,14 @@ public class ButtonUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
     public void OnPointerDown(PointerEventData data)
     {
-        _goParent.transform.DOScale(_scaleDownMultiplier, _scaleDuration).SetEase(Ease.OutBack);
+		_goParent.transform.DOScale(_scaleDownMultiplier, _scaleDuration).SetEase(Ease.OutBack);
         if (_blackImage != null) _blackImage.DOFade(0.75f, 0);
 		_rsePlaySound.Call(TypeSound.SFX, _onClickClip, false);
     }
 
     public void OnPointerUp(PointerEventData data)
     {
-        _goParent.transform.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBack);
+       _goParent.transform.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBack);
         if (_blackImage != null) _blackImage.DOFade(0, 0);
         OnClick.Invoke();
     }

@@ -16,6 +16,6 @@ MonoBehaviour:
   description: High damage skeleton
   mesh: {fileID: 3966704484479627296, guid: 559b3d76fd5bea04eac7e21f6edbd484, type: 3}
   delay: 1
-  health: 2
-  speed: 0.5
-  damage: 2
+  health: 4
+  speed: 0.75
+  damage: 1

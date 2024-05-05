@@ -16,15 +16,27 @@ public class Tile3D : MonoBehaviour
 	private RaycastHit[] _hits;
 	private bool _pinHits;
 
-    protected void Start() 
+    private void Start() 
     {
         SetUpRendered();
+		TileStart();
     }
+
+	protected virtual void TileStart()
+	{
+		// Do nothing in the parent
+	}
     
-    protected void Update() 
+    private void Update() 
     {
         SetColor();
+		TileUpdate();
     }
+
+	protected virtual void TileUpdate()
+	{
+		// Do nothing in the parent
+	}
 
     protected void SetUpRendered() 
     {
@@ -115,6 +127,6 @@ public class Tile3D : MonoBehaviour
 
     public virtual void DoPlacementAction(Tile3D[] surroundTiles, Ground belowGround) 
     {
-		// Do nothing for the moment
+		// Do nothing in the parent
     }
 }

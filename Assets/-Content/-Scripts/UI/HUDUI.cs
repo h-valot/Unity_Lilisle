@@ -23,7 +23,7 @@ public class HUDUI : MonoBehaviour
 
 	private void UpdateHeart()
 	{
-		_tmpHeartCounter.text = $"{_rsoHeart.value}";
+		_tmpHeartCounter.text = $"{Mathf.Clamp(_rsoHeart.value, 0, _gameConfig.baseHeartAmount)}";
 		_imgHeartProgressBar.fillAmount = (float)_rsoHeart.value / (float)_gameConfig.baseHeartAmount;
 		_imgHeartProgressBarBack.DOFillAmount(_imgHeartProgressBar.fillAmount, _backProgressBarDuration).SetEase(Ease.InOutSine);
 	}

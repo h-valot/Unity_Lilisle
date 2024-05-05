@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class GameOverUI : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class GameOverUI : MonoBehaviour
 	{
 		Show();
 
-		_tmpScore.text = $"{_rsoCurrentWave.value}";
+		_tmpScore.text = $"{_rsoCurrentWave.value + 1}";
 		_tmpTilePlaced.text = $"{_rsoRoadPlaced.value + _rsoTowerPlaced.value + _rsoFlagPlaced.value}";
 		_tmpRoadPlaced.text = $"{_rsoRoadPlaced.value}";
 		_tmpTowerPlaced.text = $"{_rsoTowerPlaced.value}";
@@ -47,11 +48,15 @@ public class GameOverUI : MonoBehaviour
 
 	public void Retry()
 	{
+		DOTween.CompleteAll();
+		DOTween.KillAll();
 		SceneManager.LoadScene("Game");
 	}
 
-	public void LoadMenu()
+	public void LoadSceneMenu()
 	{
+		DOTween.CompleteAll();
+		DOTween.KillAll();
 		SceneManager.LoadScene("Menu");
 	}
 

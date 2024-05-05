@@ -15,8 +15,8 @@ MonoBehaviour:
   tileName: Ranger
   description: Fires arrows on further enemies
   icon: {fileID: 21300000, guid: 9224f83b6f572584a8f73a96b6283fc8, type: 3}
-  cost: 3
-  tile: {fileID: 182543872132654592, guid: e8c8ecc986d56664185572be7e0485dc, type: 3}
+  cost: 4
+  tile: {fileID: 3391995232713766257, guid: e8c8ecc986d56664185572be7e0485dc, type: 3}
   atkRange: 3
-  fireRate: 2
+  fireRate: 3
   damage: 2

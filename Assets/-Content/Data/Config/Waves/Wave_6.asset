@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2e347f0ae98b314a8358af1e242b3ee, type: 3}
-  m_Name: Wave_Debug
+  m_Name: Wave_6
   m_EditorClassIdentifier: 
   enemies:
+  - {fileID: 11400000, guid: 668801f69a65a904ea0e816eaad5bf0e, type: 2}
+  - {fileID: 11400000, guid: 668801f69a65a904ea0e816eaad5bf0e, type: 2}
   - {fileID: 11400000, guid: 4f1015a7498b8cf4aa7d94121579384a, type: 2}
-  - {fileID: 11400000, guid: 063bf7166ba18c246a7f2270da244f11, type: 2}
+  - {fileID: 11400000, guid: 4f1015a7498b8cf4aa7d94121579384a, type: 2}

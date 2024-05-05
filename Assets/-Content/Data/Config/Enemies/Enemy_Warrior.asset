@@ -16,6 +16,6 @@ MonoBehaviour:
   description: Heavy armored skeleton
   mesh: {fileID: 3316164736229565373, guid: 2d9790899681db84e93f73204e68ca68, type: 3}
   delay: 1
-  health: 4
-  speed: 0.5
+  health: 8
+  speed: 0.75
   damage: 1

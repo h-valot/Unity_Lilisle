@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public class Heart : MonoBehaviour
+public class Heart : Road
 { 
+	[Header("HEART")]
+
     [Header("Tweakable values")]
     [SerializeField] private AudioClip _onHitClip;
     [SerializeField] private AudioClip _onDeathClip;
@@ -12,8 +14,6 @@ public class Heart : MonoBehaviour
     [SerializeField] private RSE_Sound _rsePlaySound;
     [SerializeField] private GameConfig _gameConfig;
 
-	private int newHeartAmount;
-
 	private void Start()
 	{
 		_rsoHeart.value = _gameConfig.baseHeartAmount;
@@ -21,23 +21,27 @@ public class Heart : MonoBehaviour
 
     public void UpdateHeart(int amount)
     {
-		newHeartAmount = _rsoHeart.value + amount;
+        _rsoHeart.value += amount;
+		_rsePlaySound.Call(TypeSound.SFX, _onHitClip, false);
+    }
 
-		if (newHeartAmount >= _gameConfig.baseHeartAmount)
+	public void HandleHeart()
+	{
+		if (_rsoHeart.value <= 0)
 		{
-			newHeartAmount = _gameConfig.baseHeartAmount;
-		}
-		
-		if (newHeartAmount <= 0)
-		{
-			newHeartAmount = 0;
-			_rsoHeart.value = newHeartAmount;
 			_rsoGameState.value = GameState.GAME_OVER;
 			_rsePlaySound.Call(TypeSound.SFX, _onDeathClip, false);
 			return;
 		}
+	}
 
-        _rsoHeart.value = newHeartAmount;
-		_rsePlaySound.Call(TypeSound.SFX, _onHitClip, false);
-    }
+	private void OnEnable()
+	{
+		_rsoHeart.OnChanged += HandleHeart;
+	}
+
+	private void OnDisable()
+	{
+		_rsoHeart.OnChanged -= HandleHeart;
+	}
 }

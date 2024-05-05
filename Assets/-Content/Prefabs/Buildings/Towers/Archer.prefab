@@ -92,7 +92,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3914105048998963899}
-  - component: {fileID: 34030306164387256}
   - component: {fileID: 3306391428184833737}
   - component: {fileID: 2474393700782722409}
   m_Layer: 2
@@ -111,7 +110,7 @@ Transform:
   m_GameObject: {fileID: 1337065595387446246}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.193, y: 0, z: 3.211}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -123,25 +122,6 @@ Transform:
   - {fileID: 6404933609377483129}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &34030306164387256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1337065595387446246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed6ffa2f4a942014ebfe8c20a1fc770e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _meshRenderer: {fileID: 1793763388646088514}
-  _greenMaterial: {fileID: 2100000, guid: cb59363738caf574fbc666d59c1af1f0, type: 2}
-  _redMaterial: {fileID: 2100000, guid: eacf0f6455fc3244e9a3cd00387db0eb, type: 2}
-  _voidMaterial: {fileID: 2100000, guid: 6d1b79ece601caa45b55caa39503a671, type: 2}
-  _raycastPoint: {fileID: 8426076486931647995}
-  canBePlaced: 0
-  isPlaced: 0
 --- !u!114 &3306391428184833737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,12 +134,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 955e43991988bf84dbfae8c180c7da58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _meshRenderer: {fileID: 1793763388646088514}
+  _greenMaterial: {fileID: 2100000, guid: cb59363738caf574fbc666d59c1af1f0, type: 2}
+  _redMaterial: {fileID: 2100000, guid: eacf0f6455fc3244e9a3cd00387db0eb, type: 2}
+  _voidMaterial: {fileID: 2100000, guid: 6d1b79ece601caa45b55caa39503a671, type: 2}
+  _raycastPoint: {fileID: 8426076486931647995}
+  canBePlaced: 0
+  isPlaced: 0
   _towerConfig: {fileID: 11400000, guid: 41f3e953068168b479e25542fe67d34b, type: 2}
   _shootingPoint: {fileID: 6404933609377483129}
   _sphereCollider: {fileID: 2474393700782722409}
   _rseEnemyDies: {fileID: 11400000, guid: 959b22c71fc51964692bbd3b491252c1, type: 2}
-  _rsoGameState: {fileID: 11400000, guid: e4a78a4d5b17451448be85967eb19d2c, type: 2}
-  _enemiesInRange: []
+  _rsoTowerPlaced: {fileID: 11400000, guid: b63d4194a8c1e0f44bb2926eb99fc240, type: 2}
 --- !u!135 &2474393700782722409
 SphereCollider:
   m_ObjectHideFlags: 0

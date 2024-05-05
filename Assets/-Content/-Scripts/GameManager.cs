@@ -3,10 +3,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-	[Header("RSO references")]
-    [SerializeField] private RSO_Heart _rsoHeart;
+	[Header("RS references")]
     [SerializeField] private RSO_Path _rsoPath;
 	[SerializeField] private RSO_GameState _rsoGameState;
+	[SerializeField] private RSO_RoadPlaced _rsoRoadPlaced;
+	[SerializeField] private RSO_TowerPlaced _rsoTowerPlaced;
+	[SerializeField] private RSO_FlagPlaced _rsoFlagPlaced;
+	[SerializeField] private RSO_EnemyKilled _rsoEnemyKilled;
 	[SerializeField] private RSE_Sound _rseSoundPlay;
 
 	[Header("Audio references")]
@@ -26,6 +29,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
 		_rsoPath.value = new List<Vector3>();
+		
+		_rsoRoadPlaced.value = 0;
+		_rsoTowerPlaced.value = 0;
+		_rsoFlagPlaced.value = 0;
+		_rsoEnemyKilled.value = 0;
 
 		_tilePlacer.Initialize();
 		_enemyPool.Initialize();
@@ -40,22 +48,4 @@ public class GameManager : MonoBehaviour
 		
 		_rsoGameState.value = GameState.EDIT;
     }
-
-	private void HandleGameOver()
-	{
-		if (_rsoHeart.value <= 0)
-		{
-			_rsoGameState.value = GameState.GAME_OVER;
-		}
-	}
-
-	private void OnEnable()
-	{
-		_rsoHeart.OnChanged += HandleGameOver;
-	}
-
-	private void OnDisable()
-	{
-		_rsoHeart.OnChanged -= HandleGameOver;
-	}
 }

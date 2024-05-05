@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tower : MonoBehaviour
+public class Tower : Tile3D
 {
+	[Header("TOWER")]
+
 	[Header("Tweakable values")]
 	[SerializeField] private TowerConfig _towerConfig;
 
@@ -13,19 +15,20 @@ public class Tower : MonoBehaviour
 
 	[Header("External references")]
 	[SerializeField] private RSE_EnemyDies _rseEnemyDies;
+	[SerializeField] private RSO_TowerPlaced _rsoTowerPlaced;
 
 	private List<Enemy> _enemiesInRange = new List<Enemy>();
 	private Enemy _target;
 	private bool _reloading;
 
-	private void Start()
+	protected override void TileStart()
 	{
 		_sphereCollider.radius = _towerConfig.atkRange;
 		_sphereCollider.center = _shootingPoint.localPosition;
 		_reloading = false;
 	}
 
-	private void Update()
+	protected override void TileUpdate()
 	{
 		if (_reloading)
 		{
@@ -75,6 +78,11 @@ public class Tower : MonoBehaviour
 		_enemiesInRange.Remove(enemy);
 	}
 
+    public override void DoPlacementAction(Tile3D[] surroundTiles, Ground belowGround) 
+    {
+		_rsoTowerPlaced.value++;
+    }
+
 	private void OnTriggerEnter(Collider collider)
 	{
 		if (collider.TryGetComponent<Enemy>(out var enemy))
@@ -104,10 +112,5 @@ public class Tower : MonoBehaviour
 	private void OnDisable()
 	{
 		_rseEnemyDies.action -= RemoveEnemy;
-	}
-
-	private void OnDrawGizmos()
-	{
-        Gizmos.DrawWireSphere(transform.position, _towerConfig.atkRange);
 	}
 }

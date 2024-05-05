@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -8,6 +9,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _thresholdDistance;
     [SerializeField] private AudioClip _onHitClip;
 	[SerializeField] private float _deathScaleDuration = 0.25f;
+	[SerializeField] private float _backProgressBarDuration = 0.5f;
+
+    [Header("Internal references")]
+    [SerializeField] private Image _healthBar;
+    [SerializeField] private Image _healthBarLerp;
 
     [Header("External references")]
     [SerializeField] private RSO_Path _rsoPath;
@@ -30,6 +36,8 @@ public class Enemy : MonoBehaviour
         transform.position = _rsoPath.value[^1];
         _nextWaypoint = _rsoPath.value.Count - 2;
 		_currentHealth = _enemyConfig.health;
+		_healthBar.fillAmount = 1;
+		_healthBarLerp.fillAmount = _healthBar.fillAmount;
 		_completed = false;
 
 		if (_mesh) 
@@ -109,7 +117,6 @@ public class Enemy : MonoBehaviour
 		}
 	}
 
-
 	public IEnumerator AnimateDeath()
 	{
 		transform.DOScale(0, _deathScaleDuration).SetEase(Ease.OutElastic);
@@ -124,6 +131,9 @@ public class Enemy : MonoBehaviour
     public void UpdateHealth(int amount)
     {
         _currentHealth += amount;
+
+		_healthBar.fillAmount = (float) _currentHealth / (float) _enemyConfig.health;
+		_healthBarLerp.DOFillAmount(_healthBar.fillAmount, _backProgressBarDuration).SetEase(Ease.InOutSine);
 
 		if (_currentHealth <= 0)
 		{
