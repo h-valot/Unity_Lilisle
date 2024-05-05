@@ -61,7 +61,7 @@ MonoBehaviour:
   _groundPrefab: {fileID: 4603391182648974575, guid: 8c491abafd48a954184221a0d3f7844f,
     type: 3}
   _rsoGroundGrid: {fileID: 11400000, guid: 3683f88f6990ddb41b9c265c2fd21cf3, type: 2}
-  voidPositions: []
+  _rsoFlagPlaced: {fileID: 11400000, guid: c709decbe771d42409250ac8ea415b96, type: 2}
 --- !u!65 &4013872967510611420
 BoxCollider:
   m_ObjectHideFlags: 0

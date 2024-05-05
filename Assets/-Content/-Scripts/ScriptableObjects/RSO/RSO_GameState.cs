@@ -7,5 +7,6 @@ public class RSO_GameState : RuntimeScriptableObject<GameState> { }
 public enum GameState
 {
 	EDIT = 0,
-	WAVE
+	WAVE,
+	GAME_OVER
 }

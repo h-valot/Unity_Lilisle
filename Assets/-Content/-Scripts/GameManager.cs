@@ -7,7 +7,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private RSO_Heart _rsoHeart;
     [SerializeField] private RSO_Path _rsoPath;
 	[SerializeField] private RSO_GameState _rsoGameState;
-	
+	[SerializeField] private RSE_Sound _rseSoundPlay;
+
+	[Header("Audio references")]
+    [SerializeField] private AudioClip _music;
+
 	[Header("Configs references")]
     [SerializeField] private GameConfig _gameConfig;
 	
@@ -21,12 +25,13 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-		_rsoHeart.value = _gameConfig.baseHeartAmount;
 		_rsoPath.value = new List<Vector3>();
 
 		_tilePlacer.Initialize();
 		_enemyPool.Initialize();
 		_waveManager.Initialize();
+
+        _rseSoundPlay.Call(TypeSound.MUSIC, _music, true);
         
         for (int index = 0; index < _roads.Length; index++)
         {
@@ -36,26 +41,21 @@ public class GameManager : MonoBehaviour
 		_rsoGameState.value = GameState.EDIT;
     }
 
-	private void ClampHeart()
+	private void HandleGameOver()
 	{
-		if (_rsoHeart.value > _gameConfig.baseHeartAmount)
+		if (_rsoHeart.value <= 0)
 		{
-			_rsoHeart.value = _gameConfig.baseHeartAmount;
-		}
-
-		if (_rsoHeart.value < 0)
-		{
-			_rsoHeart.value = 0;
+			_rsoGameState.value = GameState.GAME_OVER;
 		}
 	}
 
 	private void OnEnable()
 	{
-		_rsoHeart.OnChanged += ClampHeart;
+		_rsoHeart.OnChanged += HandleGameOver;
 	}
 
 	private void OnDisable()
 	{
-		_rsoHeart.OnChanged -= ClampHeart;
+		_rsoHeart.OnChanged -= HandleGameOver;
 	}
 }

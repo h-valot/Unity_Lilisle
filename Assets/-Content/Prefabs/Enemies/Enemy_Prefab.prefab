@@ -48,10 +48,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _thresholdDistance: 0.2
+  _onHitClip: {fileID: 8300000, guid: 2cf437e5d13591b4a9ac4971b1638558, type: 3}
   _deathScaleDuration: 1
-  _animator: {fileID: 0}
   _rsoPath: {fileID: 11400000, guid: 72c367678eb47b84a833043d293d8aa3, type: 2}
   _rseEnemyDies: {fileID: 11400000, guid: 959b22c71fc51964692bbd3b491252c1, type: 2}
+  _rsePlaySound: {fileID: 11400000, guid: f0256450570d74049ba34210933df39e, type: 2}
+  _rsoEnemyKilled: {fileID: 11400000, guid: 66939406888ed414dab5102be3ede29c, type: 2}
   _nextWaypoint: 0
 --- !u!136 &6129578030747049093
 CapsuleCollider:

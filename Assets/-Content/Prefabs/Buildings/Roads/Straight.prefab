@@ -59,6 +59,7 @@ MonoBehaviour:
   isPlaced: 0
   _connector: {fileID: 7531175752043766007}
   _waypoint: {fileID: 3676581451731830866}
+  _rsoRoadPlaced: {fileID: 11400000, guid: 89e3fc307ce25d14496e440e31179fb0, type: 2}
 --- !u!1 &3989214304062472333
 GameObject:
   m_ObjectHideFlags: 0

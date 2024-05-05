@@ -3,9 +3,13 @@ using UnityEngine;
 public class Road : Tile3D
 {
 	[Header("ROAD")]
-	[Header("References")]
+
+	[Header("Internal references")]
 	[SerializeField] private Connector _connector;
     [SerializeField] private Waypoint _waypoint;
+	
+	[Header("External references")]
+	[SerializeField] private RSO_RoadPlaced _rsoRoadPlaced;
 
     public override void VerifyPlacement(Tile3D[] surroundTiles, Ground belowTile) 
     {
@@ -47,6 +51,7 @@ public class Road : Tile3D
 	
     public override void DoPlacementAction(Tile3D[] surroundTiles, Ground belowGround) 
     {
+		_rsoRoadPlaced.value++;
 		PlacePath();
     }
 

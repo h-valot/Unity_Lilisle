@@ -13,6 +13,10 @@ public class CardUI : MonoBehaviour
 	[SerializeField] private UnfoldOnHover _hover;
 	[SerializeField] private Image _imgIcon;
 
+	[Header("External references")]
+	[SerializeField] private RSE_Sound _rsePlaySound;
+	[SerializeField] private AudioClip _onSelectedClip;
+
 	[Header("Debugging")]
 	public bool isSelected;
 	public TileConfig tileConfig;
@@ -51,12 +55,14 @@ public class CardUI : MonoBehaviour
 	private void Select()
 	{
 		OnSelect?.Invoke(tileConfig);
+		_rsePlaySound.Call(TypeSound.SFX, _onSelectedClip, false);
 		isSelected = true;
 	}
 
 	public void Unselect()
 	{
 		OnUnselect?.Invoke(tileConfig);
+		_rsePlaySound.Call(TypeSound.SFX, _onSelectedClip, false);
 		isSelected = false;
 	}
 

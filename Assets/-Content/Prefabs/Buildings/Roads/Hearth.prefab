@@ -131,7 +131,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35bf94a04d178fc40ada5920982ff1a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _onHitClip: {fileID: 8300000, guid: a9380c13bae9b564bbe0fcef1c0b2bf5, type: 3}
+  _onDeathClip: {fileID: 8300000, guid: 9ce00bdc37ccfbd4482e1e61aa08c94b, type: 3}
   _rsoHeart: {fileID: 11400000, guid: 8058baf1fad7b4541bd97120ff0156cb, type: 2}
+  _rsoGameState: {fileID: 11400000, guid: e4a78a4d5b17451448be85967eb19d2c, type: 2}
+  _rsePlaySound: {fileID: 11400000, guid: f0256450570d74049ba34210933df39e, type: 2}
+  _gameConfig: {fileID: 11400000, guid: abd24eb470218cc4782532b65f874929, type: 2}
 --- !u!65 &1046969450327521520
 BoxCollider:
   m_ObjectHideFlags: 0

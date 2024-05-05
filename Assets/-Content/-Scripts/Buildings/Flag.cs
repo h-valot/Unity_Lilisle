@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Flag : Tile3D
@@ -11,15 +10,15 @@ public class Flag : Tile3D
 	[Header("External references")]
     [SerializeField] private Ground _groundPrefab;
 	[SerializeField] private RSO_GroundGrid _rsoGroundGrid;
-
-	[Header("Debugging")]
-    public List<Vector3Int> voidPositions;
+	[SerializeField] private RSO_FlagPlaced _rsoFlagPlaced;
 
 	private Vector3Int _voidPosition;
 	private Ground _newGround;
 
     public override void DoPlacementAction(Tile3D[] surroundHits, Ground belowTile) 
 	{
+		_rsoFlagPlaced.value++;
+
 		// Filling nearby void
         for (int x = -_flagConfig.range; x < _flagConfig.range + 1; x++)
 		{

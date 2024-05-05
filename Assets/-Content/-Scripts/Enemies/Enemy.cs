@@ -6,17 +6,16 @@ public class Enemy : MonoBehaviour
 {
     [Header("Tweakable values")] 
     [SerializeField] private float _thresholdDistance;
-
-	[Header("Animations")]
+    [SerializeField] private AudioClip _onHitClip;
 	[SerializeField] private float _deathScaleDuration = 0.25f;
 
     [Header("External references")]
     [SerializeField] private RSO_Path _rsoPath;
     [SerializeField] private RSE_EnemyDies _rseEnemyDies;
-
-	[Header("Debugging")]
-    public int _nextWaypoint;
-
+    [SerializeField] private RSE_Sound _rsePlaySound;
+	[SerializeField] private RSO_EnemyKilled _rsoEnemyKilled;
+ 
+    private int _nextWaypoint;
     private EnemyConfig _enemyConfig;
     private Vector3 _movementDirection;
     private bool _initialized;
@@ -103,6 +102,7 @@ public class Enemy : MonoBehaviour
 	public void HandleDeath()
 	{
 		_rseEnemyDies.Call(this);
+		_rsoEnemyKilled.value++;
 		if (gameObject.activeInHierarchy)
 		{
 			StartCoroutine(AnimateDeath());
@@ -130,6 +130,7 @@ public class Enemy : MonoBehaviour
 			HandleDeath();
 		}
 		
+		_rsePlaySound.Call(TypeSound.SFX, _onHitClip, false);
 		_animator.SetBool("GetHit", true);
 		_animator.SetBool("GetHit", false);
     }
@@ -138,7 +139,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.collider.TryGetComponent<Heart>(out var health))
         {
-            health.UpdateHealth(-_enemyConfig.damage);
+            health.UpdateHeart(-_enemyConfig.damage);
 			HandleDeath();
         }
     }
