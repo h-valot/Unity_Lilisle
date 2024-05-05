@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
 using DG.Tweening;
-using Unity.Mathematics;
 
 public class Enemy : MonoBehaviour
 {
@@ -34,9 +33,9 @@ public class Enemy : MonoBehaviour
 		_currentHealth = _enemyConfig.health;
 		_completed = false;
 
-		if (_mesh)
-		{
-			Destroy(_mesh);
+		if (_mesh) 
+		{ 
+			Destroy(_mesh); 
 		}
 		_mesh = Instantiate(_enemyConfig.mesh, transform);
 		_animator = _mesh.GetComponent<Animator>();

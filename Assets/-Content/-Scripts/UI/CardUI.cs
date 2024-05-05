@@ -10,6 +10,7 @@ public class CardUI : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI _tmpTitle;
 	[SerializeField] private TextMeshProUGUI _tmpFlavor;
 	[SerializeField] private TextMeshProUGUI _tmpCost;
+	[SerializeField] private UnfoldOnHover _hover;
 	[SerializeField] private Image _imgIcon;
 
 	[Header("Debugging")]
@@ -31,8 +32,8 @@ public class CardUI : MonoBehaviour
 	{
 		_tmpTitle.text = tileConfig.tileName;
 		_tmpFlavor.text = tileConfig.description;
-		//_imgIcon.sprite = card.tile.icon;
-		_tmpCost.text = $"Cost: lose {tileConfig.cost} hearts";
+		_imgIcon.sprite = tileConfig.icon;
+		_tmpCost.text = $"{tileConfig.cost}";
 	}
 
 	public void ToggleSelection()
@@ -57,6 +58,11 @@ public class CardUI : MonoBehaviour
 	{
 		OnUnselect?.Invoke(tileConfig);
 		isSelected = false;
+	}
+
+	public void Fold()
+	{
+		_hover.Fold();
 	}
 
 	public void Show()

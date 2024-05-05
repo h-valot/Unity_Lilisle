@@ -10,15 +10,22 @@ public class Controller : MonoBehaviour
 
     private Vector3 _input;
 
-    private void Update() 
+    private void FixedUpdate() 
     {
-		// Gather inputs
-        _input = new Vector3(Input.GetAxisRaw("Horizontal"), 0,  Input.GetAxisRaw("Vertical"));
+		GatherInputs();
+		Move();
     }
 
-    private void LateUpdate() 
+    private void GatherInputs() 
     {
-		// Move
-        _rigidbody.MovePosition(_rigidbody.position + _input * moveSpeed * Time.fixedDeltaTime);
+        _input = new Vector3(-Input.GetAxisRaw("Vertical"), 0, Input.GetAxisRaw("Horizontal"));
     }
+
+	private void Move()
+	{
+		Quaternion rotation = Quaternion.Euler(0, 45.0f, 0);
+		Matrix4x4 isoMatrix = Matrix4x4.Rotate(rotation);
+		Vector3 direction = isoMatrix.MultiplyPoint3x4(_input);
+		_rigidbody.velocity = direction.normalized * moveSpeed;
+	}
 }

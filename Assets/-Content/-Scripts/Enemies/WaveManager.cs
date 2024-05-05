@@ -49,7 +49,7 @@ public class WaveManager : MonoBehaviour
             yield return new WaitForSeconds(_WAVE_DELAY);
 		}
 		
-		_rsoGameState.value = GameState.REWARD;
+		_rsoGameState.value = GameState.EDIT;
     }
 
 	private void OnEnable()

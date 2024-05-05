@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileName: Tower
   description: Fires arrows on close enemies
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 809b0428f5c653245b250ea59fa0a7d3, type: 3}
   cost: 2
   tile: {fileID: 34030306164387256, guid: bea2cdfcc50b08a4c838d5ddbaa55431, type: 3}
   atkRange: 2
