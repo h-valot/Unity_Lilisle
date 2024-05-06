@@ -44,4 +44,11 @@ public class Heart : Road
 	{
 		_rsoHeart.OnChanged -= HandleHeart;
 	}
+
+	#if UNITY_EDITOR
+
+		public void test_setRsoHeart(RSO_Heart value) => _rsoHeart = value;
+		public void test_setRsoGameState(RSO_GameState value) => _rsoGameState = value;
+
+	#endif
 }

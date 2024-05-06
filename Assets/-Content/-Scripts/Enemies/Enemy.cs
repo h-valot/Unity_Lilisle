@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEditor;
 using DG.Tweening;
 using UnityEngine.UI;
 
@@ -13,7 +12,7 @@ public class Enemy : MonoBehaviour
 	[SerializeField] private float _backProgressBarDuration = 0.5f;
 
     [Header("Internal references")]
-    [SerializeField] private Image _healthBar;
+    [SerializeField] private Image _healthBarFill;
     [SerializeField] private Image _healthBarLerp;
 
     [Header("External references")]
@@ -37,8 +36,8 @@ public class Enemy : MonoBehaviour
         transform.position = _rsoPath.value[^1];
         _nextWaypoint = _rsoPath.value.Count - 2;
 		_currentHealth = _enemyConfig.health;
-		_healthBar.fillAmount = 1;
-		_healthBarLerp.fillAmount = _healthBar.fillAmount;
+		_healthBarFill.fillAmount = 1;
+		_healthBarLerp.fillAmount = _healthBarFill.fillAmount;
 		_completed = false;
 
 		if (_mesh) 
@@ -138,15 +137,12 @@ public class Enemy : MonoBehaviour
 			HandleDeath();
 		}
 
-		if (EditorApplication.isPlaying) 
-		{
-			_healthBar.fillAmount = (float) _currentHealth / (float) _enemyConfig.health;
-			_healthBarLerp.DOFillAmount(_healthBar.fillAmount, _backProgressBarDuration).SetEase(Ease.InOutSine);
+		_healthBarFill.fillAmount = (float) _currentHealth / (float) _enemyConfig.health;
+		_healthBarLerp.DOFillAmount(_healthBarFill.fillAmount, _backProgressBarDuration).SetEase(Ease.InOutSine);
 
-			_rsePlaySound.Call(TypeSound.SFX, _onHitClip, false);
+		_rsePlaySound.Call(TypeSound.SFX, _onHitClip, false);
 
-			_animator.SetTrigger("GetHit");
-		}
+		_animator.SetTrigger("GetHit");
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -161,7 +157,18 @@ public class Enemy : MonoBehaviour
 	#if UNITY_EDITOR
 
 		public int test_getCurrentHealth() => _currentHealth;
-		public int test_setCurrentHealth(int value) => _currentHealth = value;
+		public int test_getNextWaypoint() => _nextWaypoint;
+		public bool test_getCompleted() => _completed;
 
+		public void test_setCurrentHealth(int value) => _currentHealth = value;
+		public void test_setAnimator(Animator value) => _animator = value;
+		public void test_setEnemyConfig(EnemyConfig value) => _enemyConfig = value;
+		public void test_setMesh(GameObject value) => _mesh = value;
+		public void test_setRsoEnemyKilled(RSO_EnemyKilled value) => _rsoEnemyKilled = value;
+		public void test_setNextWaypoint(int value) => _nextWaypoint = value;
+		public void test_setRsoPath(RSO_Path value) => _rsoPath = value;
+
+		public void test_checkForDistance() => CheckForDistance();
+		
 	#endif
 }

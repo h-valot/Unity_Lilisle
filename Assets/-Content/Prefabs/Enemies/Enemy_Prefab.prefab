@@ -192,7 +192,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 5
+  m_PixelsPerUnitMultiplier: 2
 --- !u!114 &8386208303834379038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.688, g: 0.46818402, b: 0.394912, a: 1}
+  m_Color: {r: 0.766, g: 0.4012946, b: 0.35312596, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -276,7 +276,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.697
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -310,7 +310,7 @@ Transform:
   m_GameObject: {fileID: 1769015779859022008}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -333,12 +333,12 @@ MonoBehaviour:
   _onHitClip: {fileID: 8300000, guid: 2cf437e5d13591b4a9ac4971b1638558, type: 3}
   _deathScaleDuration: 1
   _backProgressBarDuration: 0.5
-  _healthBar: {fileID: 8745892760616103006}
+  _healthBarFill: {fileID: 8745892760616103006}
   _healthBarLerp: {fileID: 7053167982293561536}
   _rsoPath: {fileID: 11400000, guid: 72c367678eb47b84a833043d293d8aa3, type: 2}
   _rseEnemyDies: {fileID: 11400000, guid: 959b22c71fc51964692bbd3b491252c1, type: 2}
   _rsePlaySound: {fileID: 11400000, guid: f0256450570d74049ba34210933df39e, type: 2}
-  _rsoEnemyKilled: {fileID: 11400000, guid: 66939406888ed414dab5102be3ede29c, type: 2}
+  _rsoEnemyKilled: {fileID: 0}
 --- !u!136 &6129578030747049093
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -460,7 +460,7 @@ GameObject:
   - component: {fileID: 4925127830455592340}
   - component: {fileID: 7053167982293561536}
   m_Layer: 5
-  m_Name: IMG_Back fill
+  m_Name: IMG_Lerp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
