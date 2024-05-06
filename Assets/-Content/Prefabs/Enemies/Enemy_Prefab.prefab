@@ -310,7 +310,7 @@ Transform:
   m_GameObject: {fileID: 1769015779859022008}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -335,7 +335,7 @@ MonoBehaviour:
   _backProgressBarDuration: 0.5
   _healthBarFill: {fileID: 8745892760616103006}
   _healthBarLerp: {fileID: 7053167982293561536}
-  _rsoPath: {fileID: 11400000, guid: 72c367678eb47b84a833043d293d8aa3, type: 2}
+  _rsoPath: {fileID: 0}
   _rseEnemyDies: {fileID: 11400000, guid: 959b22c71fc51964692bbd3b491252c1, type: 2}
   _rsePlaySound: {fileID: 11400000, guid: f0256450570d74049ba34210933df39e, type: 2}
   _rsoEnemyKilled: {fileID: 0}
