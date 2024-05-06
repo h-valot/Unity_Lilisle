@@ -1,6 +1,5 @@
 using NUnit.Framework;
 using UnityEditor;
-using UnityEngine;
 
 namespace Tests
 {
@@ -12,9 +11,8 @@ namespace Tests
 			// Arrange
 			Heart heart = AssetDatabase.LoadAssetAtPath<Heart>("Assets/-Content/Prefabs/Buildings/Roads/Heart.prefab");
 
-			RSO_Heart rsoHeart = ScriptableObject.CreateInstance<RSO_Heart>();
+			RSO_Heart rsoHeart = AssetDatabase.LoadAssetAtPath<RSO_Heart>("Assets/-Content/Data/RSO/RSO_Heart.asset");
 			rsoHeart.value = 20;
-			heart.test_setRsoHeart(rsoHeart);
 
 			// Act
 			heart.UpdateHeart(-1);
@@ -29,13 +27,11 @@ namespace Tests
 			// Arrange
 			Heart heart = AssetDatabase.LoadAssetAtPath<Heart>("Assets/-Content/Prefabs/Buildings/Roads/Heart.prefab");
 
-			RSO_Heart rsoHeart = ScriptableObject.CreateInstance<RSO_Heart>();
+			RSO_Heart rsoHeart = AssetDatabase.LoadAssetAtPath<RSO_Heart>("Assets/-Content/Data/RSO/RSO_Heart.asset");
 			rsoHeart.value = 0;
-			heart.test_setRsoHeart(rsoHeart);
 
-			RSO_GameState rsoGameState = ScriptableObject.CreateInstance<RSO_GameState>();
+			RSO_GameState rsoGameState = AssetDatabase.LoadAssetAtPath<RSO_GameState>("Assets/-Content/Data/RSO/RSO_GameState.asset");
 			rsoGameState.value = GameState.WAVE;
-			heart.test_setRsoGameState(rsoGameState);
 
 			// Act
 			heart.HandleHeart();

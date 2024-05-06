@@ -146,6 +146,8 @@ MonoBehaviour:
   _sphereCollider: {fileID: 2474393700782722409}
   _rseEnemyDies: {fileID: 11400000, guid: 959b22c71fc51964692bbd3b491252c1, type: 2}
   _rsoTowerPlaced: {fileID: 11400000, guid: b63d4194a8c1e0f44bb2926eb99fc240, type: 2}
+  _arrowPrefab: {fileID: 2580782048864484243, guid: 2ca9e765a6a03ed43903c335b7de406a,
+    type: 3}
 --- !u!135 &2474393700782722409
 SphereCollider:
   m_ObjectHideFlags: 0

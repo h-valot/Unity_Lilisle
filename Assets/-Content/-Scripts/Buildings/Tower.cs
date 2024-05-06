@@ -16,6 +16,7 @@ public class Tower : Tile3D
 	[Header("External references")]
 	[SerializeField] private RSE_EnemyDies _rseEnemyDies;
 	[SerializeField] private RSO_TowerPlaced _rsoTowerPlaced;
+	[SerializeField] private Arrow _arrowPrefab;
 
 	private List<Enemy> _enemiesInRange = new List<Enemy>();
 	private Enemy _target;
@@ -62,7 +63,8 @@ public class Tower : Tile3D
 			return;
 		}
 
-		_target.UpdateHealth(-_towerConfig.damage);
+		Arrow newArrow = Instantiate(_arrowPrefab, _shootingPoint.transform);
+		newArrow.Launch(_target._arrowTarget, _towerConfig.damage);
 		StartCoroutine(Reload());
 	}
 	

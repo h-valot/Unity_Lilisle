@@ -33,8 +33,9 @@ namespace Tests
 		{
 			// Arrange
 			Enemy enemy = AssetDatabase.LoadAssetAtPath<Enemy>("Assets/-Content/Prefabs/Enemies/Enemy_Prefab.prefab");
-
-			RSO_EnemyKilled rsoEnemyKilled = ScriptableObject.CreateInstance<RSO_EnemyKilled>();
+			
+			RSO_EnemyKilled rsoEnemyKilled = AssetDatabase.LoadAssetAtPath<RSO_EnemyKilled>("Assets/-Content/Data/RSO/RSO_EnemyKilled.asset");
+			rsoEnemyKilled.value = 0;
 			enemy.test_setRsoEnemyKilled(rsoEnemyKilled);
 
 			// Act
@@ -52,7 +53,7 @@ namespace Tests
 			enemy.transform.position = new Vector3(1, 0, 1);
 			enemy.test_setNextWaypoint(2);
 
-			RSO_Path rsoPath = ScriptableObject.CreateInstance<RSO_Path>();
+			RSO_Path rsoPath = AssetDatabase.LoadAssetAtPath<RSO_Path>("Assets/-Content/Data/RSO/RSO_Path.asset");
 			rsoPath.value = new List<Vector3>
 			{
 				new Vector3(0, 0, 0), 
@@ -76,7 +77,7 @@ namespace Tests
 			enemy.transform.position = new Vector3(1, 0, 0);
 			enemy.test_setNextWaypoint(1);
 
-			RSO_Path rsoPath = ScriptableObject.CreateInstance<RSO_Path>();
+			RSO_Path rsoPath = AssetDatabase.LoadAssetAtPath<RSO_Path>("Assets/-Content/Data/RSO/RSO_Path.asset");
 			rsoPath.value = new List<Vector3>
 			{
 				new Vector3(0, 0, 0), 
@@ -100,7 +101,7 @@ namespace Tests
 			enemy.transform.position = new Vector3(0, 0, 0);
 			enemy.test_setNextWaypoint(0);
 
-			RSO_Path rsoPath = ScriptableObject.CreateInstance<RSO_Path>();
+			RSO_Path rsoPath = AssetDatabase.LoadAssetAtPath<RSO_Path>("Assets/-Content/Data/RSO/RSO_Path.asset");
 			rsoPath.value = new List<Vector3>
 			{
 				new Vector3(0, 0, 0), 

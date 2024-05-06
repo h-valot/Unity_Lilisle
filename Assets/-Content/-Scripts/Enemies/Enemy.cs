@@ -8,12 +8,12 @@ public class Enemy : MonoBehaviour
     [Header("Tweakable values")] 
     [SerializeField] private float _thresholdDistance;
     [SerializeField] private AudioClip _onHitClip;
-	[SerializeField] private float _deathScaleDuration = 0.25f;
 	[SerializeField] private float _backProgressBarDuration = 0.5f;
 
     [Header("Internal references")]
     [SerializeField] private Image _healthBarFill;
     [SerializeField] private Image _healthBarLerp;
+    public Transform _arrowTarget;
 
     [Header("External references")]
     [SerializeField] private RSO_Path _rsoPath;
@@ -113,19 +113,11 @@ public class Enemy : MonoBehaviour
 		_rsoEnemyKilled.value++;
 		if (gameObject.activeInHierarchy)
 		{
-			StartCoroutine(AnimateDeath());
+			transform.localScale = Vector3.one;
+			transform.position = Vector3.zero;
+			transform.rotation = Quaternion.identity;
+			gameObject.SetActive(false);
 		}
-	}
-
-	public IEnumerator AnimateDeath()
-	{
-		transform.DOScale(0, _deathScaleDuration).SetEase(Ease.OutElastic);
-		yield return new WaitForSeconds(_deathScaleDuration);
-
-		transform.localScale = Vector3.one;
-		transform.position = Vector3.zero;
-		transform.rotation = Quaternion.identity;
-		gameObject.SetActive(false);
 	}
 
     public void UpdateHealth(int amount)
@@ -159,6 +151,7 @@ public class Enemy : MonoBehaviour
 		public int test_getCurrentHealth() => _currentHealth;
 		public int test_getNextWaypoint() => _nextWaypoint;
 		public bool test_getCompleted() => _completed;
+		public RSO_Path test_getRsoPath() => _rsoPath;
 
 		public void test_setCurrentHealth(int value) => _currentHealth = value;
 		public void test_setAnimator(Animator value) => _animator = value;
