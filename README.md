@@ -35,7 +35,7 @@ The flag creates new grounds around itself.
 
 ## Enemies
 
-Enemies spawns in waves going up the whole road to reach the heart. They all deal one damage to the heart. There are three types of enemies:
+Enemies spawns in waves going up the whole road to reach the heart. They all deal one damage to the heart. There are four types of enemies:
 
 ### Minion
 
@@ -47,7 +47,11 @@ The Mage has 4 health points.
 
 ### Warrior
 
-The Warrior is the strongest enemy with 8 health points.
+The Warrior has 8 health points.
+
+### Rogue
+
+The Rogue moves faster and has 16 health points. Good luck!
 
 # How to play
 

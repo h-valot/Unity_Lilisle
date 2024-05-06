@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8cefafdba984c71845ae8b634b8fe67, type: 3}
+  m_Name: Enemy_Rogue
+  m_EditorClassIdentifier: 
+  enemyName: Rogue
+  description: Heaviest skeleton
+  mesh: {fileID: 2185680975841406008, guid: 4e76c2b2a4597634c94eb73a21dc1a3a, type: 3}
+  delay: 1
+  health: 16
+  speed: 1
+  damage: 1

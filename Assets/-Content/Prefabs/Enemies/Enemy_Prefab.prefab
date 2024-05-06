@@ -332,7 +332,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _thresholdDistance: 0.2
   _onHitClip: {fileID: 8300000, guid: 2cf437e5d13591b4a9ac4971b1638558, type: 3}
-  _deathScaleDuration: 1
   _backProgressBarDuration: 0.5
   _healthBarFill: {fileID: 8745892760616103006}
   _healthBarLerp: {fileID: 7053167982293561536}

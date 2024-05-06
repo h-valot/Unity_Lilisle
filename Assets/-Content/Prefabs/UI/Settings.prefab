@@ -1325,12 +1325,12 @@ PrefabInstance:
     - target: {fileID: 6821986857456739007, guid: 70e5d97f43ae8c14780163a6a69f3858,
         type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadMenu
+      value: LoadSceneMenu
       objectReference: {fileID: 0}
     - target: {fileID: 6821986857456739007, guid: 70e5d97f43ae8c14780163a6a69f3858,
         type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SettingsUI, Assembly-CSharp
+      value: SettingsUI, Game
       objectReference: {fileID: 0}
     - target: {fileID: 6821986857456739007, guid: 70e5d97f43ae8c14780163a6a69f3858,
         type: 3}
