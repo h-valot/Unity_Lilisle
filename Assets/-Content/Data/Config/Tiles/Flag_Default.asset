@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileName: Flag
   description: Creates ground all around the flag.
+  borderColor: {r: 0.48298946, g: 0.6313726, b: 0.5176471, a: 1}
   icon: {fileID: 21300000, guid: c3bbfcc08158dd742aa9d2b092914708, type: 3}
   cost: 3
   tile: {fileID: 6950943757453537600, guid: 8110e344873176246a8182f230311c1f, type: 3}

@@ -6,15 +6,17 @@ public class TilePlacer : MonoBehaviour
     [SerializeField] private int _gridSize;
 
     [Header("References")] 
-    [SerializeField] private SnappingGrid _snappingGrid;
     [SerializeField] private GameObject _cityGround;
     [SerializeField] private Transform _gameObjectsContainer;
     [SerializeField] private RSE_SetCursor _rseSetCursor;
     [SerializeField] private RSE_TilePlaced _rseTilePlaced;
+	[SerializeField] private RSE_TilePlacementFailed _rseTilePlacementFailed;
     [SerializeField] private RSO_GroundGrid _rsoGroundGrid;
     [SerializeField] private RSO_TileGrid _rsoTileGrid;
 
 	private const int _SURROUND_TILES_LENGTH = 9;
+	private const float _CELL_SIZE = 1f;
+
     private Camera _camera;
     private Tile3D _cursor = null;
 	private Vector3 _lastFrameCursorPos;
@@ -72,7 +74,7 @@ public class TilePlacer : MonoBehaviour
         var ray = _camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out var hitInfo)) 
         {
-        	_cursor.transform.position = _snappingGrid.GetNearestPointOnGrid(hitInfo.point);
+        	_cursor.transform.position = GetNearestPointOnGrid(hitInfo.point);
 		}
 
 		// Optimization: avoid doing same calculation endlessly
@@ -82,6 +84,19 @@ public class TilePlacer : MonoBehaviour
 			VerifyPlacement();
 		}
 	}
+
+    public Vector3 GetNearestPointOnGrid(Vector3 clickPoint) 
+    {
+        clickPoint -= transform.position;
+        
+        // x and z position based on the spacing size
+        int xCount = Mathf.RoundToInt(clickPoint.x / _CELL_SIZE);
+        int zCount = Mathf.RoundToInt(clickPoint.z / _CELL_SIZE);
+        
+        var output = new Vector3(xCount * _CELL_SIZE, 0, zCount * _CELL_SIZE);
+        output += transform.position;
+        return output;
+    }
 		
 	private void VerifyPlacement()
 	{
@@ -126,10 +141,17 @@ public class TilePlacer : MonoBehaviour
 	private void HandleInputs()
 	{
 		// Input: place a tile at the mouse over position on click
-		if (Input.GetMouseButtonDown(0)
-		&& _cursor.canBePlaced) 
+		if (Input.GetMouseButtonDown(0)) 
 		{
-			PlaceTile(_surroundTiles, _belowGround);
+			if (_cursor.canBePlaced)
+			{
+				PlaceTile(_surroundTiles, _belowGround);
+			}
+			else 
+			{
+				_rseTilePlacementFailed.Call();
+			}
+
 		}
 	
 		// Input: rotate this object

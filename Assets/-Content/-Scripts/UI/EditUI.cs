@@ -18,6 +18,7 @@ public class EditUI : MonoBehaviour
 	[SerializeField] private RSE_PlayNextWave _rsePlayNextWave;
 	[SerializeField] private RSE_SetCursor _rseSetCursor;
 	[SerializeField] private RSE_TilePlaced _rseTilePlaced;
+	[SerializeField] private RSE_TilePlacementFailed _rseTilePlacementFailed;
 
 	private TileConfig _selectedTile;
 	private List<TileConfig> _hand;
@@ -44,21 +45,24 @@ public class EditUI : MonoBehaviour
 
 		if (_rsoCurrentWave.value >= 0)
 		{
-			_hand = new List<TileConfig>();
-			for (int i = 0; i < _cardsUI.Length; i++)
-			{
-				_hand.Add(_rewardsConfig.tiles[Random.Range(0, _rewardsConfig.tiles.Length)]);
-				_cardsUI[i].Initialize(_hand[i]);
-			}
-
+			FillHand();
 			_goHandGuide.SetActive(true);
 			_goHand.SetActive(true);
-
-			FillHand();
+			InitializeCards();
 		}
 	}
 
 	private void FillHand()
+	{
+		_hand = new List<TileConfig>();
+		for (int i = 0; i < _cardsUI.Length; i++)
+		{
+			_hand.Add(_rewardsConfig.tiles[Random.Range(0, _rewardsConfig.tiles.Length)]);
+			_cardsUI[i].Initialize(_hand[i]);
+		}
+	}
+
+	private void InitializeCards()
 	{
 		for (int i = 0; i < _cardsUI.Length; i++)
 		{
@@ -98,7 +102,7 @@ public class EditUI : MonoBehaviour
 	{
 		_rsoHeart.value -= _selectedTile.cost;
 		_hand.Remove(_selectedTile);
-		FillHand();
+		InitializeCards();
 		FoldCards();
 		ExitPlacementMode();
 	}
@@ -131,6 +135,7 @@ public class EditUI : MonoBehaviour
 	{
 		_rsoGameState.OnChanged += HandleEdit;
 		_rseTilePlaced.action += HandleTilePlaced;
+		_rseTilePlacementFailed.action += ExitPlacementMode;
 
 		for (int i = 0; i < _cardsUI.Length; i++)
 		{
@@ -142,6 +147,7 @@ public class EditUI : MonoBehaviour
 	{
 		_rsoGameState.OnChanged -= HandleEdit;
 		_rseTilePlaced.action -= HandleTilePlaced;
+		_rseTilePlacementFailed.action -= ExitPlacementMode;
 
 		for (int i = 0; i < _cardsUI.Length; i++)
 		{

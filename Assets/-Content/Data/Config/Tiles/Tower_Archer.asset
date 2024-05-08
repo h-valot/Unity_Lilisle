@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ae5db212c2ebc546804ea61f482dee5, type: 3}
-  m_Name: Tile_Archer
+  m_Name: Tower_Archer
   m_EditorClassIdentifier: 
   tileName: Tower
-  description: Fires arrows on close enemies
+  description: Deals 1 damage in a range of 2.
+  borderColor: {r: 0.6313726, g: 0.48235294, b: 0.48235294, a: 1}
   icon: {fileID: 21300000, guid: 809b0428f5c653245b250ea59fa0a7d3, type: 3}
   cost: 3
   tile: {fileID: 3306391428184833737, guid: bea2cdfcc50b08a4c838d5ddbaa55431, type: 3}

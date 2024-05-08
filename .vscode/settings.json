@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Unity-FreneJam.sln"
+    "dotnet.defaultSolution": "Unity_FreneJam.sln"
 }

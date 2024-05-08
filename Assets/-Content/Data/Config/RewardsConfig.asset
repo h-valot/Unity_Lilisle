@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: RewardsConfig
   m_EditorClassIdentifier: 
   tiles:
+  - {fileID: 11400000, guid: f7f4fa5e5595dc841bfa701d6a6e5cca, type: 2}
+  - {fileID: 11400000, guid: be9241376f181184684711139c1028cc, type: 2}
+  - {fileID: 11400000, guid: 43126bbec51148c41aba59ca8599260e, type: 2}
   - {fileID: 11400000, guid: 41f3e953068168b479e25542fe67d34b, type: 2}
   - {fileID: 11400000, guid: 35a6667b55a94b342a0e8c8f8f904ad3, type: 2}
-  - {fileID: 11400000, guid: c10afe61a618e5242ba33ed2a9fd4c1e, type: 2}
-  - {fileID: 11400000, guid: 17661fcf8ee61d24987c091fea86622f, type: 2}
-  - {fileID: 11400000, guid: f7f4fa5e5595dc841bfa701d6a6e5cca, type: 2}
