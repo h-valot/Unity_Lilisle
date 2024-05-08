@@ -4,7 +4,7 @@ using UnityEngine;
 public class RewardUI : MonoBehaviour
 {
 	[Header("Internal references")]
-	[SerializeField] private GameObject _goParent;
+	[SerializeField] private GameObject _goGraphics;
 	[SerializeField] private TextMeshProUGUI _tmpScore, _tmpTitle;
 
 	[Header("External references")]
@@ -65,11 +65,11 @@ public class RewardUI : MonoBehaviour
 
 	private void Hide()
 	{
-		_goParent.SetActive(false);
+		_goGraphics.SetActive(false);
 	}
 
 	private void Show()
 	{
-		_goParent.SetActive(true);
+		_goGraphics.SetActive(true);
 	}
 }

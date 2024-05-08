@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 [System.Serializable]
-public enum TypeSound
+public enum AudioChannel
 {
     MUSIC = 0,
     SFX,
@@ -20,50 +20,40 @@ public class SoundManager : MonoBehaviour
     [Header("External references")]
     [SerializeField] private RSO_Volume _rsoMusicVolume;
     [SerializeField] private RSO_Volume _rsoSfxVolume;
-    [SerializeField] private RSE_Sound _rsePlaySound, _rseStopSound;
+    [SerializeField] private RSE_PlaySound _rsePlaySound;
 
-    private void StopSound(TypeSound typeSound, AudioClip audioClip, bool isLoop) 
-    { 
-        AudioSource source = GetSourceTarget(typeSound, audioClip);
-        if (source != null)
-        {
-            source.clip = null;
-            source.Stop();
-        }
-    }
-
-    private void LaunchSound(TypeSound typeSound, AudioClip audioClip, bool isLoop)
+    private void LaunchSound(Sound soundData)
     {
-        if (IsSoundPlaying(typeSound, ref audioClip)) 
+        if (IsSoundPlaying(soundData.channel, ref soundData.clip)) 
         { 
 			return;
         } 
 
-		AudioSource source = GetSourceTarget(typeSound, audioClip); 
-		source.clip = audioClip; 
+		AudioSource source = GetSourceTarget(soundData.channel, soundData.clip); 
+		source.clip = soundData.clip; 
+		source.loop = soundData.doLoop;
 		source.Play();
-		source.loop = isLoop;
 
-		if (!isLoop) 
+		if (!soundData.doLoop) 
 		{
-			StartCoroutine(UnlockSourceAudio(source, audioClip.length));
+			StartCoroutine(UnlockSourceAudio(source, soundData.clip.length));
 		}
     }
 
-    private bool IsSoundPlaying(TypeSound typeSound, ref AudioClip audioClip)
+    private bool IsSoundPlaying(AudioChannel typeSound, ref AudioClip audioClip)
     {
         return _sources
-			.Find(source => source.typeSound == typeSound).audioSources[0]
+			.Find(source => source.channel == typeSound).sources[0]
 			.clip == audioClip;
     }
 
-    private AudioSource GetSourceTarget(TypeSound typeSound, AudioClip audioClip)
+    private AudioSource GetSourceTarget(AudioChannel typeSound, AudioClip audioClip)
     {
         AudioSource source = _sources
-			.Find(source => source.typeSound == typeSound).audioSources
+			.Find(source => source.channel == typeSound).sources
 			.Find(source => source.clip == audioClip);
 
-        return (source == null) ? _sources.Find(o => o.typeSound == typeSound).audioSources.Find(o => o.clip == null) : source;
+        return (source == null) ? _sources.Find(o => o.channel == typeSound).sources.Find(o => o.clip == null) : source;
     }
 
     private IEnumerator UnlockSourceAudio(AudioSource source, float delay)
@@ -95,7 +85,6 @@ public class SoundManager : MonoBehaviour
     private void OnEnable()
     {
         _rsePlaySound.action += LaunchSound;
-        _rseStopSound.action += StopSound;
         _rsoSfxVolume.OnChanged += UpdateSfxVolume;
         _rsoMusicVolume.OnChanged += UpdateMusicVolume;
     }
@@ -103,7 +92,6 @@ public class SoundManager : MonoBehaviour
     private void OnDisable()
     {
         _rsePlaySound.action -= LaunchSound;
-        _rseStopSound.action -= StopSound;
         _rsoSfxVolume.OnChanged -= UpdateSfxVolume;
         _rsoMusicVolume.OnChanged -= UpdateMusicVolume;
     }
@@ -112,6 +100,6 @@ public class SoundManager : MonoBehaviour
 [System.Serializable]
 public class AudioSourceList
 {
-    public TypeSound typeSound;
-    public List<AudioSource> audioSources;
+    public AudioChannel channel;
+    public List<AudioSource> sources;
 }

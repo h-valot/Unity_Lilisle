@@ -11,7 +11,7 @@ public class Heart : Road
     [Header("External references")]
     [SerializeField] private RSO_Heart _rsoHeart;
 	[SerializeField] private RSO_GameState _rsoGameState;
-    [SerializeField] private RSE_Sound _rsePlaySound;
+    [SerializeField] private RSE_PlaySound _rsePlaySound;
     [SerializeField] private GameConfig _gameConfig;
 
 	private void Start()
@@ -22,7 +22,7 @@ public class Heart : Road
     public void UpdateHeart(int amount)
     {
         _rsoHeart.value += amount;
-		_rsePlaySound.Call(TypeSound.SFX, _onHitClip, false);
+		_rsePlaySound.Call(new Sound(_onHitClip, AudioChannel.SFX));
     }
 
 	public void HandleHeart()
@@ -30,7 +30,7 @@ public class Heart : Road
 		if (_rsoHeart.value <= 0)
 		{
 			_rsoGameState.value = GameState.GAME_OVER;
-			_rsePlaySound.Call(TypeSound.SFX, _onDeathClip, false);
+			_rsePlaySound.Call(new Sound(_onDeathClip, AudioChannel.SFX));
 			return;
 		}
 	}

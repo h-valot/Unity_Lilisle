@@ -16,7 +16,7 @@ public class CardUI : MonoBehaviour
 	[SerializeField] private UnfoldOnHover _hover;
 
 	[Header("External references")]
-	[SerializeField] private RSE_Sound _rsePlaySound;
+	[SerializeField] private RSE_PlaySound _rsePlaySound;
 	[SerializeField] private RSO_Heart _rsoHeart;
 	[SerializeField] private AudioClip _onSelectedClip;
 
@@ -59,7 +59,7 @@ public class CardUI : MonoBehaviour
 	private void Select()
 	{
 		OnSelect?.Invoke(tileConfig);
-		_rsePlaySound.Call(TypeSound.SFX, _onSelectedClip, false);
+		_rsePlaySound.Call(new Sound(_onSelectedClip, AudioChannel.SFX));
 		isSelected = true;
 		HandleLock();
 	}
@@ -67,7 +67,7 @@ public class CardUI : MonoBehaviour
 	public void Unselect()
 	{
 		OnUnselect?.Invoke(tileConfig);
-		_rsePlaySound.Call(TypeSound.SFX, _onSelectedClip, false);
+		_rsePlaySound.Call(new Sound(_onSelectedClip, AudioChannel.SFX));
 		isSelected = false;
 		HandleLock();
 	}

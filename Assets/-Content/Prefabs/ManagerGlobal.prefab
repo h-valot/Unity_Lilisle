@@ -1838,8 +1838,8 @@ MonoBehaviour:
   _sfxAudioMixer: {fileID: 8803482510002622321, guid: 5cc5a90217f33894aa842cd513636258,
     type: 2}
   _sources:
-  - typeSound: 0
-    audioSources:
+  - channel: 0
+    sources:
     - {fileID: 3354934102238514658}
     - {fileID: 433095306262844940}
     - {fileID: 4433000542311528998}
@@ -1848,8 +1848,8 @@ MonoBehaviour:
     - {fileID: 3768589469070865323}
     - {fileID: 387174791260982459}
     - {fileID: 5083034470356230037}
-  - typeSound: 1
-    audioSources:
+  - channel: 1
+    sources:
     - {fileID: 8946678864769935727}
     - {fileID: 6945287035818257905}
     - {fileID: 2102639080198164642}
@@ -1861,7 +1861,6 @@ MonoBehaviour:
   _rsoMusicVolume: {fileID: 11400000, guid: c4f2ec018951d794eaf8a28448f8d305, type: 2}
   _rsoSfxVolume: {fileID: 11400000, guid: 92b398860c3db7d449a3b3afe9bf9b71, type: 2}
   _rsePlaySound: {fileID: 11400000, guid: f0256450570d74049ba34210933df39e, type: 2}
-  _rseStopSound: {fileID: 11400000, guid: 1fc9133bec5d37546a452c0a94fb86ad, type: 2}
 --- !u!1 &8203334616846010923
 GameObject:
   m_ObjectHideFlags: 0

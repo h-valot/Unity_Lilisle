@@ -1,5 +1,5 @@
 using ScriptableObjects;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "RSE_Sound", menuName = "Data/RSE/Sound")]
-public class RSE_Sound : RuntimeScriptableEvent<TypeSound, AudioClip, bool> { }
+[CreateAssetMenu(fileName = "RSE_PlaySound", menuName = "Data/RSE/Play sound")]
+public class RSE_PlaySound : RuntimeScriptableEvent<Sound> { }

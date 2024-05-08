@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     [Header("External references")]
     [SerializeField] private RSO_Path _rsoPath;
     [SerializeField] private RSE_EnemyDies _rseEnemyDies;
-    [SerializeField] private RSE_Sound _rsePlaySound;
+    [SerializeField] private RSE_PlaySound _rsePlaySound;
 	[SerializeField] private RSO_EnemyKilled _rsoEnemyKilled;
  
     private int _nextWaypoint;
@@ -132,7 +132,7 @@ public class Enemy : MonoBehaviour
 		_healthBarFill.fillAmount = (float) _currentHealth / (float) _enemyConfig.health;
 		_healthBarLerp.DOFillAmount(_healthBarFill.fillAmount, _backProgressBarDuration).SetEase(Ease.InOutSine);
 
-		_rsePlaySound.Call(TypeSound.SFX, _onHitClip, false);
+		_rsePlaySound.Call(new Sound(_onHitClip, AudioChannel.SFX));
 
 		_animator.SetTrigger("GetHit");
     }

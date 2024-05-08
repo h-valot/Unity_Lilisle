@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private RSO_TowerPlaced _rsoTowerPlaced;
 	[SerializeField] private RSO_FlagPlaced _rsoFlagPlaced;
 	[SerializeField] private RSO_EnemyKilled _rsoEnemyKilled;
-	[SerializeField] private RSE_Sound _rseSoundPlay;
+	[SerializeField] private RSE_PlaySound _rseSoundPlay;
 
 	[Header("Audio references")]
     [SerializeField] private AudioClip _music;
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 		_enemyPool.Initialize();
 		_waveManager.Initialize();
 
-        _rseSoundPlay.Call(TypeSound.MUSIC, _music, true);
+        _rseSoundPlay.Call(new Sound(_music, AudioChannel.MUSIC, true));
         
         for (int index = 0; index < _roads.Length; index++)
         {

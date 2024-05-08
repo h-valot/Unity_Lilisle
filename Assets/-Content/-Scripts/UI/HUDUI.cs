@@ -9,7 +9,7 @@ public class HUDUI : MonoBehaviour
 	[SerializeField] private float _backProgressBarDuration = 0.5f;
 
 	[Header("Internal references")]
-	[SerializeField] private GameObject _goParent;
+	[SerializeField] private GameObject _goGraphics;
 	[SerializeField] private GameObject _goWave;
 	[SerializeField] private TextMeshProUGUI _tmpWaveCounter;
 	[SerializeField] private TextMeshProUGUI _tmpHeartCounter;
